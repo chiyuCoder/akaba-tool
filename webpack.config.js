@@ -5,11 +5,11 @@ const TerserPlugin = require("terser-webpack-plugin");
 module.exports = {
     devtool: process.env.NODE_ENV === "development" ? "source-map" : undefined,
     entry: {
-        "AkabaTool": path.join(__dirname, "./src/index.ts"),
+        "index": path.join(__dirname, "./src/index.ts"),
         // "src/akaba": path.join(__dirname, "./src/akaba/index.ts"),
     },
     output: {
-        path: path.join(__dirname, "./dist"),
+        path: path.join(__dirname, "./lib"),
         filename: "[name].js",
         environment: {
             arrowFunction: false,

@@ -80,6 +80,8 @@ export function cryptoRandom(): number {
     return num;
 }
 
+export function toChineseIndex(num: 0, zeroStr: string): string
+export function toChineseIndex(num: number): string
 export function toChineseIndex(num: number, zeroStr: string = '零'): string {
     const list = [
         zeroStr,
