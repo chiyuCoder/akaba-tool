@@ -1,4 +1,4 @@
-#akaba-tool
+# akaba-tool
 
 ## 类数组形式
 ```typescript
