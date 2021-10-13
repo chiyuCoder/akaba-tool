@@ -119,24 +119,5 @@ export declare function mixedOpt<TypeA extends NSFuncOption.TOptionPropertyValue
 export declare function mixedOptAndCopyResult<TypeA extends NSFuncOption.TOptionPropertyValue, TypeB extends NSFuncOption.TOptionPropertyValue>(optA: TypeA, optB: TypeB): TypeA & TypeB;
 ```
 
-## 自定义复制类 (Experimental: 当前实验性的，目前不建议直接使用)
-```typescript
-export declare namespace NSOptionCopier {
-    type TAdditionalHandlerMethod<T> = (opt: T, obj: OptionCopier<T>) => T;
-    interface IAdditionalHandle<T> {
-        type: any;
-        handler: TAdditionalHandlerMethod<T>;
-        handlerId?: string;
-    }
-}
-```
-
-```typescript
-export declare class OptionCopier<T = any> {
-    readonly additionalHandlerList: Array<NSOptionCopier.IAdditionalHandle<T>>;
-    constructor();
-    protected doCopyObj<ObjType>(origin: ObjType): ObjType;
-    doCopy(origin: T): T;
-    addHandler(type: any, handler: NSOptionCopier.TAdditionalHandlerMethod<T>, handlerId?: string): this;
-}
-```
+- 其他  
+另外提供OptionCopier类，可以实现自定义的复制
