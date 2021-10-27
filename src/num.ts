@@ -34,7 +34,7 @@ export function floatNum(text: string | number, saveNum: number, nanText: string
     if (isNaN(num)) {
         return nanText;
     }
-    return Math.round(num * Math.pow(10, saveNum) / Math.pow(10, saveNum));
+    return Math.round(num * Math.pow(10, saveNum)) / Math.pow(10, saveNum);
 }
 
 export function toFixed(text: string | number, saveNum: number, nanText: string | number): string | number {
