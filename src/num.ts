@@ -1,3 +1,5 @@
+import {doLoop} from "./arrayLike";
+
 export namespace NSFuncNum {
     export type TResultIsMatchFloatFalseReason = "stringLengthMax" | "notLikeNumber" | "fractionStringLengthMax";
 

@@ -119,5 +119,58 @@ export declare function mixedOpt<TypeA extends NSFuncOption.TOptionPropertyValue
 export declare function mixedOptAndCopyResult<TypeA extends NSFuncOption.TOptionPropertyValue, TypeB extends NSFuncOption.TOptionPropertyValue>(optA: TypeA, optB: TypeB): TypeA & TypeB;
 ```
 
+- 范围设置
+
+```typescript
+export declare namespace NSFuncRange {
+    type TValHandle<T> = (item: T, index: number) => number;
+    interface IBaseRange {
+        min: number;
+        max: number;
+    }
+    interface IBaseSplitInfo {
+        min: number;
+        max: number;
+        splitNumber: number;
+    }
+    interface IExtraSplitInfo {
+        stepHandle: (step: number) => number;
+        baseRefer: 'min' | 'max'; 
+    }
+    interface IBaseSplitInfoStep extends IBaseSplitInfo {
+        step: number;
+    }
+    interface IBaseSplitInfoStepTimes extends IBaseSplitInfoStep {
+        timesBase: number;
+    }
+}
+
+export declare function getRangeOfDataList<T>(list: ArrayLike<T>, valHandle?: NSFuncRange.TValHandle<T>): NSFuncRange.IBaseRange;
+
+/**
+ * 
+ * option.baseRefer 默认为'min'
+ * option.stepHandle 默认为 (step: number) => step
+ * getSplitInfoOf({min: 0.1, max: 0.52, splitNumber: 4}) => {min: 0.1, max: 0.52, splitNumber: 4, step: 0.10500000000000001}
+ */
+export declare function getSplitInfoOf(splitInfo: NSFuncRange.IBaseSplitInfo, option?: Partial<NSFuncRange.IExtraSplitInfo>): NSFuncRange.IBaseSplitInfoStep;
+
+/**
+ *
+ * option.baseRefer 默认为'min'
+ * option.stepHandle 默认为 (step: number) => Math.ceil(step);
+ * getSplitInfoIntStep({min: 0.1, max: 0.52, splitNumber: 4}) => min: 0, max: 1, splitNumber: 4, step: 0.25}
+ */
+export declare function getSplitInfoIntStep(splitInfo: NSFuncRange.IBaseSplitInfo, option: Partial<NSFuncRange.IExtraSplitInfo>): NSFuncRange.IBaseSplitInfoStep;
+
+/**
+ * option.timesBase = 10
+ * option.baseRefer 默认为'min'
+ * option.stepHandle 默认为 (step: number) => Math.ceil(step);
+ * getSplitInfoTimesStep({min: 0.1, max: 0.52, splitNumber: 4}) => {min: 0, max: 40, splitNumber: 4, step: 10}
+ */
+export declare function getSplitInfoTimesStep(splitInfo: NSFuncRange.IBaseSplitInfo, option: Partial<NSFuncRange.IBaseSplitInfoStepTimes>): NSFuncRange.IBaseSplitInfoStep;
+```
+
 - 其他  
 另外提供OptionCopier类，可以实现自定义的复制
