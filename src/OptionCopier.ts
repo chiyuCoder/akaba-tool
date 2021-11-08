@@ -1,18 +1,7 @@
 export namespace NSOptionCopier {
-    export type TAdditionalHandlerMethod<T> = (opt: T, obj: OptionCopier<T>) => T;
-    export interface IAdditionalHandle<T> {
-        type: any;
-        handler: TAdditionalHandlerMethod<T>;
-        handlerId?: string;
-    }
-    export type TOptionPropertyValue = Option | string | number | ArrayLike<any> | Function | null | undefined;
-    export interface Option {
-        [attr: string]: TOptionPropertyValue;
-    }
 }
 
-export class OptionCopier<T = any> {
-    public readonly additionalHandlerList: Array<NSOptionCopier.IAdditionalHandle<T>> = [];
+export class OptionCopier {
     private readonly copyIdMap: Map<string, Array<any>> = new Map();
     private readonly copyIdSet: Set<string> = new Set();
     public addressReferTypeList: Array<{ new(...args: any[]): any}> = [
@@ -42,14 +31,7 @@ export class OptionCopier<T = any> {
         });
     }
 
-    public copyOption(optA: string, copyId?: string): string
-    public copyOption(optA: number, copyId?: string): number
-    public copyOption(optA: null, copyId?: string): null
-    public copyOption(optA: undefined, copyId?: string): undefined
-    public copyOption<T>(optA: ArrayLike<T>, copyId?: string): T[]
-    public copyOption(optA: Function, copyId?: string): Function
-    public copyOption(optA: NSOptionCopier.Option, copyId?: string): NSOptionCopier.Option
-    public copyOption(optA: NSOptionCopier.TOptionPropertyValue, copyId?: string): NSOptionCopier.TOptionPropertyValue {
+    public copyOption<T>(optA: T, copyId?: string): T {
         if (!copyId) {
             copyId = this.generateCopyId();
         }
@@ -75,7 +57,7 @@ export class OptionCopier<T = any> {
         return optA;
     }
 
-    public copyOptionAsObj<T extends NSOptionCopier.Option>(optA: T, copyId?: string): T {
+    public copyOptionAsObj<T>(optA: T, copyId?: string): T {
         if (!copyId) {
             copyId = this.generateCopyId();
             const list: any[] = [
@@ -95,7 +77,7 @@ export class OptionCopier<T = any> {
         return copy;
     }
 
-    public  mixedOpt<TypeA extends NSOptionCopier.TOptionPropertyValue, TypeB extends NSOptionCopier.TOptionPropertyValue>(optA: TypeA, optB: TypeB): TypeA & TypeB {
+    public  mixedOpt<TypeA, TypeB>(optA: TypeA, optB: TypeB): TypeA & TypeB {
         if (!optA) {
             return optB as TypeA & TypeB;
         }
@@ -121,7 +103,7 @@ export class OptionCopier<T = any> {
         return JSON.parse(JSON.stringify(obj)) as T;
     }
 
-    public mixedOptAndCopyResult<TypeA extends NSOptionCopier.TOptionPropertyValue, TypeB extends NSOptionCopier.TOptionPropertyValue>(
+    public mixedOptAndCopyResult<TypeA, TypeB>(
         optA: TypeA,
         optB: TypeB,
         copyId?: string
@@ -156,4 +138,4 @@ export class OptionCopier<T = any> {
     }
 }
 
-export const optionCopier = new OptionCopier<any>();
+export const optionCopier = new OptionCopier();

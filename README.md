@@ -103,7 +103,7 @@ export declare namespace NSFuncOption {
 ```typescript
 export declare function jsonCopy<T>(obj: T): T;
 export declare function copyOptionAsArray<T>(optA: ArrayLike<T>): Array<T>;
-export declare function copyOptionAsObj<T extends NSFuncOption.Option>(optA: T): T;
+export declare function copyOptionAsObj<T>(optA: T): T;
 export declare function copyOption(optA: string): string;
 export declare function copyOption(optA: number): number;
 export declare function copyOption(optA: null): null;
@@ -115,8 +115,8 @@ export declare function copyOption(optA: NSFuncOption.Option): NSFuncOption.Opti
 
 - 混入
 ```typescript
-export declare function mixedOpt<TypeA extends NSFuncOption.TOptionPropertyValue, TypeB extends NSFuncOption.TOptionPropertyValue>(optA: TypeA, optB: TypeB): TypeA & TypeB;
-export declare function mixedOptAndCopyResult<TypeA extends NSFuncOption.TOptionPropertyValue, TypeB extends NSFuncOption.TOptionPropertyValue>(optA: TypeA, optB: TypeB): TypeA & TypeB;
+export declare function mixedOpt<TypeA, TypeB>(optA: TypeA, optB: TypeB): TypeA & TypeB;
+export declare function mixedOptAndCopyResult<TypeA, TypeB>(optA: TypeA, optB: TypeB): TypeA & TypeB;
 ```
 
 - 另外提供OptionCopier类，可以实现自定义的复制

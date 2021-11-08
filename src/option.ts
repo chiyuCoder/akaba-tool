@@ -1,35 +1,25 @@
 import { optionCopier } from './OptionCopier';
 //
 export namespace NSFuncOption {
-    export type TOptionPropertyValue = Option | string | number | ArrayLike<any> | Function | null | undefined;
-    export interface Option {
-        [attr: string]: TOptionPropertyValue;
-    }
 }
 
 export function copyOptionAsArray<T>(optA: ArrayLike<T>): Array<T> {
     return optionCopier.copyOptionAsArray(optA);
 }
 
-export function copyOptionAsObj<T extends NSFuncOption.Option>(optA: T): T {
+export function copyOptionAsObj<T>(optA: T): T {
     return optionCopier.copyOptionAsObj(optA);
 }
-export function copyOption(optA: string): string
-export function copyOption(optA: number): number
-export function copyOption(optA: null): null
-export function copyOption(optA: undefined): undefined
-export function copyOption<T>(optA: ArrayLike<T>): T[]
-export function copyOption(optA: Function): Function
-export function copyOption(optA: NSFuncOption.Option): NSFuncOption.Option
-export function copyOption(optA: NSFuncOption.TOptionPropertyValue): NSFuncOption.TOptionPropertyValue {
+
+export function copyOption<T>(optA: T): T {
     return optionCopier.copyOption(optA as any);
 }
 
-export function mixedOpt<TypeA extends NSFuncOption.TOptionPropertyValue, TypeB extends NSFuncOption.TOptionPropertyValue>(optA: TypeA, optB: TypeB): TypeA & TypeB {
+export function mixedOpt<TypeA, TypeB>(optA: TypeA, optB: TypeB): TypeA & TypeB {
     return optionCopier.mixedOpt(optA, optB);
 }
 
-export function mixedOptAndCopyResult<TypeA extends NSFuncOption.TOptionPropertyValue, TypeB extends NSFuncOption.TOptionPropertyValue>(optA: TypeA, optB: TypeB): TypeA & TypeB {
+export function mixedOptAndCopyResult<TypeA, TypeB>(optA: TypeA, optB: TypeB): TypeA & TypeB {
     if (!optA) {
         return optB as TypeA & TypeB;
     }
