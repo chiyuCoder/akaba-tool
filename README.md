@@ -119,7 +119,9 @@ export declare function mixedOpt<TypeA extends NSFuncOption.TOptionPropertyValue
 export declare function mixedOptAndCopyResult<TypeA extends NSFuncOption.TOptionPropertyValue, TypeB extends NSFuncOption.TOptionPropertyValue>(optA: TypeA, optB: TypeB): TypeA & TypeB;
 ```
 
-- 范围设置
+- 另外提供OptionCopier类，可以实现自定义的复制
+
+## 范围设置
 
 ```typescript
 export declare namespace NSFuncRange {
@@ -171,6 +173,3 @@ export declare function getSplitInfoIntStep(splitInfo: NSFuncRange.IBaseSplitInf
  */
 export declare function getSplitInfoTimesStep(splitInfo: NSFuncRange.IBaseSplitInfo, option: Partial<NSFuncRange.IBaseSplitInfoStepTimes>): NSFuncRange.IBaseSplitInfoStep;
 ```
-
-- 其他  
-另外提供OptionCopier类，可以实现自定义的复制
