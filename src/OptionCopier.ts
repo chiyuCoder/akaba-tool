@@ -28,7 +28,7 @@ export class OptionCopier<T = any> {
         const id: string = Date.now().toString(32) + '#' + Math.random();
         if (this.copyIdSet.has(id)) {
             return this.generateCopyId();
-        } 
+        }
         this.copyIdSet.add(id);
         return id;
     }
@@ -39,7 +39,7 @@ export class OptionCopier<T = any> {
         }
         return Array.from(optA).map((item) => {
             return this.copyOption(item as any, copyId) as any as T;
-        });        
+        });
     }
 
     public copyOption(optA: string, copyId?: string): string
@@ -122,8 +122,8 @@ export class OptionCopier<T = any> {
     }
 
     public mixedOptAndCopyResult<TypeA extends NSOptionCopier.TOptionPropertyValue, TypeB extends NSOptionCopier.TOptionPropertyValue>(
-        optA: TypeA, 
-        optB: TypeB, 
+        optA: TypeA,
+        optB: TypeB,
         copyId?: string
     ): TypeA & TypeB {
         if (!optA) {
@@ -156,4 +156,4 @@ export class OptionCopier<T = any> {
     }
 }
 
-export const optionCopier = new OptionCopier();
+export const optionCopier = new OptionCopier<any>();
