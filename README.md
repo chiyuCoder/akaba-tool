@@ -173,3 +173,13 @@ export declare function getSplitInfoIntStep(splitInfo: NSFuncRange.IBaseSplitInf
  */
 export declare function getSplitInfoTimesStep(splitInfo: NSFuncRange.IBaseSplitInfo, option: Partial<NSFuncRange.IBaseSplitInfoStepTimes>): NSFuncRange.IBaseSplitInfoStep;
 ```
+
+### 其他
+
+```typescript
+/**
+ * 将setTimeout转成Promise
+ * @param **delayTime**
+ */
+export declare function delay(delayTime?: number): Promise<void>;
+```
