@@ -4,4 +4,4 @@ export * from "./option";
 export * from "./OptionCopier";
 export * from "./arrayLike";
 export * from "./range";
-export * from "./file-relate";
+export * from "./fileRelate";

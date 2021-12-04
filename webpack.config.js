@@ -6,18 +6,22 @@ module.exports = {
     devtool: process.env.NODE_ENV === "development" ? "source-map" : undefined,
     entry: {
         "index": path.join(__dirname, "./src/index.ts"),
-        // "src/akaba": path.join(__dirname, "./src/akaba/index.ts"),
+        "arrayLike": path.join(__dirname, "./src/arrayLike.ts"),
+        "fileRelate": path.join(__dirname, "./src/fileRelate.ts"),
+        "num": path.join(__dirname, "./src/num.ts"),
+        "NumTransferTool": path.join(__dirname, "./src/NumTransferTool.ts"),
+        "option": path.join(__dirname, "./src/option.ts"),
+        "OptionCopier": path.join(__dirname, "./src/OptionCopier.ts"),
+        "range": path.join(__dirname, "./src/range.ts"),
     },
     output: {
         path: path.join(__dirname, "./lib"),
         filename: "[name].js",
-        environment: {
-            arrowFunction: false,
-        },
         library: {
             type: "umd",
             name: "AkabaTool",
         },
+        globalObject: "this"
     },
     optimization: {
         minimize: process.env.NODE_ENV !== "development",
