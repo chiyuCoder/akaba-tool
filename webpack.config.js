@@ -1,5 +1,4 @@
 const path = require("path");
-const os = require("os");
 const TerserPlugin = require("terser-webpack-plugin");
 // process.env.NODE_ENV = "development";
 module.exports = {
@@ -20,6 +19,21 @@ module.exports = {
         library: {
             type: "umd",
             name: "AkabaTool",
+        },
+        environment: {
+            arrowFunction: false,
+            // The environment supports BigInt as literal (123n).
+            bigIntLiteral: false,
+            // The environment supports const and let for variable declarations.
+            const: false,
+            // The environment supports destructuring ('{ a, b } = obj').
+            destructuring: false,
+            // The environment supports an async import() function to import EcmaScript modules.
+            dynamicImport: false,
+            // The environment supports 'for of' iteration ('for (const x of array) { ... }').
+            forOf: false,
+            // The environment supports ECMAScript Module syntax to import ECMAScript modules (import ... from '...').
+            module: false,
         },
         globalObject: "this"
     },
@@ -53,49 +67,4 @@ module.exports = {
             "@": path.join(__dirname, "./src"),
         },
     },
-    // watch: process.env.NODE_ENV === "development",
-    devServer: {
-        host: "0.0.0.0",
-        port: "8083",
-        hot: true,
-        contentBase: path.join(__dirname, 'dist'),
-        onListening: function(server) {
-            const addressInfo = server.listeningApp.address();
-            const port = addressInfo.port;
-            const host = addressInfo.address;
-            const protocol = "http";
-            if (host === "0.0.0.0") {
-                const networkInterfaces = os.networkInterfaces();
-                const array2d = Array.from(Object.keys(networkInterfaces)).map((interfaceId) => {
-                    const list = networkInterfaces[interfaceId];
-                    return list.map((item) => {
-                        return {
-                            ...item,
-                            interfaceId,
-                        };
-                    });
-                });
-                // console.log();
-                let localIp;
-                let netIp;
-                array2d.flat().forEach((item) => {
-                    if (
-                        (item.family.toLowerCase() === "ipv4") &&
-                        (item.netmask != "255.255.255.255")
-                    ) {
-                        if (item.internal) {
-                            localIp = item.address;
-                        } else {
-                            netIp = item.address;
-                        }
-                    }
-                });
-                const CRLF = "\r\n";
-                const text = `website run on:${CRLF}[local]: ${protocol}://${localIp}:${port}${CRLF}[network]: ${protocol}://${netIp}:${port}`;
-                console.log(text);
-                return ;
-            }
-            console.log(`website run ${protocol}://${host}:${port}`);
-        }
-    }
 };
