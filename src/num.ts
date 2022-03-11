@@ -54,7 +54,8 @@ export function toFixed(text: string | number, saveNum: number, nanText: string 
     } else if (fractionPart.length > saveNum) {
         const referNum = parseInt(fractionPart.slice(0, saveNum));
         const referNumStep = parseInt(fractionPart.slice(saveNum, saveNum + 1));
-        if (referNumStep >= 5) {
+        const intNum = parseInt(intPart);
+        if (intNum > 0 && referNumStep >= 5) {
             fractionPart = (referNum + 1).toString();
         } else {
             fractionPart = referNum.toString();
