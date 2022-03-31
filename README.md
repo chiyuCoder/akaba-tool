@@ -40,15 +40,6 @@ export declare function toChineseIndex(num: 0, zeroStr: string): string
 export declare function toChineseIndex(num: number): string;
 ```
 
-- 安全随机值
-
-```typescript
-export declare function cryptoRandInt(min: number, max?: number): number;
-export declare const winCrypto: Crypto;
-export declare function cryptoRandom(): number;
-```
-
-
 - 类型匹配
 
 ```typescript 
