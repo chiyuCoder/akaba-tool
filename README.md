@@ -165,6 +165,25 @@ export declare function getSplitInfoIntStep(splitInfo: NSFuncRange.IBaseSplitInf
 export declare function getSplitInfoTimesStep(splitInfo: NSFuncRange.IBaseSplitInfo, option: Partial<NSFuncRange.IBaseSplitInfoStepTimes>): NSFuncRange.IBaseSplitInfoStep;
 ```
 
+- fileRelate
+```typescript
+export declare namespace NSFileRelate {
+    interface IBase64RegResultMatch {
+        isMatch: true;
+        dataType: string;
+        dataSuffix: string;
+        dataData: string;
+        mime: string;
+    }
+    interface IBase64RegResultNotMatch {
+        isMatch: false;
+    }
+    type TBase64RegResult = IBase64RegResultNotMatch | IBase64RegResultMatch;
+}
+
+export declare function getDataFromBase64String(base64String: string): NSFileRelate.TBase64RegResult;
+```
+
 ### 其他
 
 ```typescript

@@ -4,6 +4,7 @@ export declare namespace NSFileRelate {
         dataType: string;
         dataSuffix: string;
         dataData: string;
+        mime: string;
     }
     interface IBase64RegResultNotMatch {
         isMatch: false;

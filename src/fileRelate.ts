@@ -4,7 +4,8 @@ export namespace NSFileRelate {
         isMatch: true;
         dataType: string;
         dataSuffix: string;
-        dataData: string
+        dataData: string;
+        mime: string;
     }
 
     export interface IBase64RegResultNotMatch {
@@ -24,6 +25,7 @@ export function getDataFromBase64String(base64String: string): NSFileRelate.TBas
             dataType: groups.dataType,
             dataSuffix: groups.dataSuffix,
             dataData: groups.dataData,
+            mime: groups.dataType + "/" + groups.dataSuffix,
         };
     }
     return {
