@@ -16,10 +16,14 @@ export namespace NSFileRelate {
 }
 
 export function getDataFromBase64String(base64String: string): NSFileRelate.TBase64RegResult {
-    const reg = /^data:(?<dataType>\w+)\/(?<dataSuffix>\w+);base64,(?<dataData>.*)/;
+    const reg = /^data:(\w+)\/(\w+);base64,(.*)/;
     const result = base64String.match(reg);
     if (result) {
-        const groups: any = result.groups;
+        const groups: any = {
+            dataType: result[1],
+            dataSuffix: result[2],
+            dataData: result[3],
+        };
         return {
             isMatch: true,
             dataType: groups.dataType,
