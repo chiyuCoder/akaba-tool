@@ -25,7 +25,37 @@ export function floatVal(text: string | number, nanText: string | number): strin
     return showNum(num, nanText);
 }
 
+export function stringifyNumber(num: number): string {
+    const numStr = num.toString();
+    if (numStr.indexOf("e") >= 0) {
+        let arr = numStr.split("e");
+        let powerPart = -parseInt(arr[1]);
+       if (powerPart > 0) {
+           let numPartStr = arr[0];
+           let numPartArr = numPartStr.split(".");
+           let numIntPart = numPartArr[0];
+           let numFractionPart = numPartArr[1] || "";
+           let resultStr: string = "";
+           const intLen = numIntPart.length;
+           if (intLen <= powerPart) {
+               resultStr = "0." + numIntPart.padStart(powerPart, "0");
+           } else {
+               let sepIndex = intLen - powerPart;
+               resultStr = numIntPart.slice(0, sepIndex) + "." + numIntPart.slice(sepIndex);
+           }
+           return resultStr + numFractionPart;
+       }
+    }
+    return numStr;
+}
+
 export function intVal(text: string | number, nanText: string | number): string | number {
+    if (typeof text === "number") {
+        let str = text.toString();
+        if (str.indexOf("e") > 0) {
+            return parseInt(stringifyNumber(text).split(".")[0]);
+        }
+    }
     const num = parseInt(text as string);
     return showNum(num, nanText);
 }

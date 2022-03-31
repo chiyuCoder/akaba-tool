@@ -183,3 +183,10 @@ export declare function getSplitInfoTimesStep(splitInfo: NSFuncRange.IBaseSplitI
  */
 export declare function delay(delayTime?: number): Promise<void>;
 ```
+
+## 更新记录
+
+- 1.0.11  
+  intVal(1e-9, "") => "0";  
+  intVal("1e-9", "") => "1";
+
