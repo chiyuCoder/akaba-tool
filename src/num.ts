@@ -94,24 +94,6 @@ export function toFixed(text: string | number, saveNum: number, nanText: string 
     return [intPart, fractionPart].join(".");
 }
 
-export function cryptoRandInt(min: number, max: number = 0) {
-    if (min > max) {
-        [min, max] = [max, min];
-    }
-    return Math.floor(cryptoRandom() * (max - min) + min);
-}
-export const winCrypto = window.crypto || (window as any).webkitCrypto ||  (window as any).msCrypto;
-const max = 2 ** 16 - 1;
-export function cryptoRandom(): number {
-    const array = new Uint16Array(1);
-    winCrypto.getRandomValues(array);
-    const num = array[0] / max;
-    if (num === 1) {
-        return 0;
-    }
-    return num;
-}
-
 export function toChineseIndex(num: 0, zeroStr: string): string
 export function toChineseIndex(num: number): string
 export function toChineseIndex(num: number, zeroStr: string = '零'): string {

@@ -5,7 +5,6 @@ export class OptionCopier {
     private readonly copyIdMap: Map<string, Array<any>> = new Map();
     private readonly copyIdSet: Set<string> = new Set();
     public addressReferTypeList: Array<{ new(...args: any[]): any}> = [
-        HTMLElement,
         Map,
         Set,
     ];

@@ -1,6 +1,4 @@
-/**
- * @jest-environment jsdom
- */
+
 import {intVal, stringifyNumber} from "../src";
 
 describe("num spec", () => {
