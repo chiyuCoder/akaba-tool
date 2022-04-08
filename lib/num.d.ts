@@ -9,11 +9,11 @@ export declare namespace NSFuncNum {
     }
     type TResultIsMatchFloat = IResultIsMatchFloatFalse | IResultIsMatchFloatTrue;
 }
-export declare function floatVal(text: string | number, nanText: string | number): string | number;
+export declare function floatVal(text: any, nanText: string | number): string | number;
 export declare function stringifyNumber(num: number): string;
-export declare function intVal(text: string | number, nanText: string | number): string | number;
-export declare function floatNum(text: string | number, saveNum: number, nanText: string | number): string | number;
-export declare function toFixed(text: string | number, saveNum: number, nanText: string | number): string | number;
+export declare function intVal(text: any, nanText: string | number): string | number;
+export declare function floatNum(text: any, saveNum: number, nanText: string | number): string | number;
+export declare function toFixed(text: any, saveNum: number, nanText: string | number): string | number;
 export declare function toChineseIndex(num: 0, zeroStr: string): string;
 export declare function toChineseIndex(num: number): string;
 export declare function isNumberLike(numStr: any): boolean;

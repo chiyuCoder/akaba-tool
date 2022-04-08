@@ -5,19 +5,19 @@ export class NumTransferTool {
     constructor(public defaultNanText: string | number = "") {
     }
 
-    floatVal(text: string | number, nanText?: string | number): string | number {
+    floatVal(text: any, nanText?: string | number): string | number {
         return floatVal(text, nanText ?? this.defaultNanText);
     }
 
-    intVal(text: string | number, nanText?: string | number): string | number {
+    intVal(text: any, nanText?: string | number): string | number {
         return intVal(text, nanText ?? this.defaultNanText);
     }
 
-    toFixed(text: string | number, saveNum: number = this.defaultSaveNum,  nanText?: string | number): string | number {
+    toFixed(text: any, saveNum: number = this.defaultSaveNum,  nanText?: string | number): string | number {
         return toFixed(text, saveNum, nanText ?? this.defaultNanText);
     }
 
-    floatNum(text: string | number, saveNum: number = this.defaultSaveNum,  nanText?: string | number): string | number {
+    floatNum(text: any, saveNum: number = this.defaultSaveNum,  nanText?: string | number): string | number {
         return floatNum(text, saveNum, nanText ?? this.defaultNanText);
     }
 }

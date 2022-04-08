@@ -13,14 +13,14 @@ export namespace NSFuncNum {
     export type TResultIsMatchFloat = IResultIsMatchFloatFalse | IResultIsMatchFloatTrue;
 }
 
-function showNum(text: number, nanText: string | number): string | number {
+function showNum(text: any, nanText: string | number): string | number {
     if (isNaN(text)) {
         return nanText;
     }
     return text;
 }
 
-export function floatVal(text: string | number, nanText: string | number): string | number {
+export function floatVal(text: any, nanText: string | number): string | number {
     const num = parseFloat(text as string);
     return showNum(num, nanText);
 }
@@ -35,7 +35,7 @@ export function stringifyNumber(num: number): string {
            let numPartArr = numPartStr.split(".");
            let numIntPart = numPartArr[0];
            let numFractionPart = numPartArr[1] || "";
-           let resultStr: string = "";
+           let resultStr: string;
            const intLen = numIntPart.length;
            if (intLen <= powerPart) {
                resultStr = "0." + numIntPart.padStart(powerPart, "0");
@@ -49,7 +49,7 @@ export function stringifyNumber(num: number): string {
     return numStr;
 }
 
-export function intVal(text: string | number, nanText: string | number): string | number {
+export function intVal(text: any, nanText: string | number): string | number {
     if (typeof text === "number") {
         let str = text.toString();
         if (str.indexOf("e") > 0) {
@@ -60,7 +60,7 @@ export function intVal(text: string | number, nanText: string | number): string 
     return showNum(num, nanText);
 }
 
-export function floatNum(text: string | number, saveNum: number, nanText: string | number) {
+export function floatNum(text: any, saveNum: number, nanText: string | number): string | number {
     let num = parseFloat(text as string);
     if (isNaN(num)) {
         return nanText;
@@ -68,7 +68,7 @@ export function floatNum(text: string | number, saveNum: number, nanText: string
     return Math.round(num * Math.pow(10, saveNum)) / Math.pow(10, saveNum);
 }
 
-export function toFixed(text: string | number, saveNum: number, nanText: string | number): string | number {
+export function toFixed(text: any, saveNum: number, nanText: string | number): string | number {
     const tmpNan = "isNaN";
     let numStr = floatNum(text as string, saveNum, tmpNan);
     if (numStr === tmpNan) {
@@ -147,7 +147,7 @@ export function isMatchFloat(num: number | string, maxLen: number = 10, fraction
                 reason: "stringLengthMax",
             };
         }
-        const [intPart, fractionPart] = str.split(".");
+        const [_, fractionPart] = str.split(".");
         if ((fractionPart || '').length > fractionMaxLen) {
             return {
                 match: false,
