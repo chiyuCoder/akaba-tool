@@ -25,17 +25,22 @@ export declare namespace NSFuncNum {
 ```
 - 格式转化
 ```typescript
-export declare function intVal(text: string | number, nanText: string | number): string | number;
+export declare function stringifyNumber(num: number): string;
+export declare function intVal(text: any, nanText: string | number): string | number;
+
 // floatVal("0.0250") ==> 0.025
-export declare function floatVal(text: string | number, nanText: string | number): string | number;
+export declare function floatVal(text: any, nanText: string | number): string | number;
+
 // floatNum("0.0250", 2) => 0.03 
 // floatNum("0.0250", 3) => 0.025
-export declare function floatNum(text: string | number, saveNum: number, nanText: string | number): string | number;
+export declare function floatNum(text: any, saveNum: number, nanText: string | number): string | number;
+
 // toFixed("0.0250", 3) => 0.0250
-export declare function toFixed(text: string | number, saveNum: number, nanText: string | number): string | number;
+export declare function toFixed(text: any, saveNum: number, nanText: string | number): string | number;
+
 // toChineseIndex(0) => '零'
 // toChineseIndex(0, "0") => "0"
-// num取值范围是 0 - 15; 其中 1 - 10对应一-十; 11->百；12->千; 13 -> 万；14 ->亿
+// num取值范围是 [0, 14]; 其中 1 -> 10对应一->十; 11->百；12->千; 13 -> 万；14 ->亿
 export declare function toChineseIndex(num: 0, zeroStr: string): string
 export declare function toChineseIndex(num: number): string;
 ```
