@@ -51,9 +51,8 @@ export function stringifyNumber(num: number): string {
 
 export function intVal(text: any, nanText: string | number): string | number {
     if (typeof text === "number") {
-        let str = text.toString();
-        if (str.indexOf("e") > 0) {
-            return parseInt(stringifyNumber(text).split(".")[0]);
+        if (text <= 1e-7) {
+            return 0;
         }
     }
     const num = parseInt(text as string);

@@ -22,5 +22,5 @@ export declare namespace NSFuncRange {
 }
 export declare function getRangeOfDataList<T>(list: ArrayLike<T>, valHandle?: NSFuncRange.TValHandle<T>): NSFuncRange.IBaseRange;
 export declare function getSplitInfoOf(splitInfo: NSFuncRange.IBaseSplitInfo, option?: Partial<NSFuncRange.IExtraSplitInfo>): NSFuncRange.IBaseSplitInfoStep;
-export declare function getSplitInfoIntStep(splitInfo: NSFuncRange.IBaseSplitInfo, option: Partial<NSFuncRange.IExtraSplitInfo>): NSFuncRange.IBaseSplitInfoStep;
+export declare function getSplitInfoIntStep(splitInfo: NSFuncRange.IBaseSplitInfo, option?: Partial<NSFuncRange.IExtraSplitInfo>): NSFuncRange.IBaseSplitInfoStep;
 export declare function getSplitInfoTimesStep(splitInfo: NSFuncRange.IBaseSplitInfo, option?: Partial<NSFuncRange.IBaseSplitInfoStepTimes>): NSFuncRange.IBaseSplitInfoStep;

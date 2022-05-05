@@ -81,7 +81,7 @@ export function getSplitInfoOf(splitInfo: NSFuncRange.IBaseSplitInfo, option: Pa
     };
 }
 
-export function getSplitInfoIntStep(splitInfo:  NSFuncRange.IBaseSplitInfo, option: Partial<NSFuncRange.IExtraSplitInfo>): NSFuncRange.IBaseSplitInfoStep {
+export function getSplitInfoIntStep(splitInfo:  NSFuncRange.IBaseSplitInfo, option: Partial<NSFuncRange.IExtraSplitInfo> = {}): NSFuncRange.IBaseSplitInfoStep {
     let copySplitInfo = optionCopier.copyOptionAsObj(splitInfo as any);
     copySplitInfo.min = Math.floor(splitInfo.min);
     copySplitInfo.max = Math.ceil(splitInfo.max);
