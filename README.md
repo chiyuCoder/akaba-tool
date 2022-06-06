@@ -43,6 +43,9 @@ export declare function toFixed(text: any, saveNum: number, nanText: string | nu
 // num取值范围是 [0, 14]; 其中 1 -> 10对应一->十; 11->百；12->千; 13 -> 万；14 ->亿
 export declare function toChineseIndex(num: 0, zeroStr: string): string
 export declare function toChineseIndex(num: number): string;
+export declare function isPositiveNumber(numLikeStr: any): boolean;
+export declare function isMatchFloat(num: number | string, maxLen?: number, fractionMaxLen?: number, isLimitInt?: boolean): NSFuncNum.TResultIsMatchFloat;
+export declare function isConstraintNum(num: any, maxIntPartLen?: number, maxFractionLen?: number): boolean;
 ```
 
 - 类型匹配
@@ -180,13 +183,26 @@ export declare namespace NSFileRelate {
         dataData: string;
         mime: string;
     }
+    
+    interface ParsedPath {
+        root: string;
+        dir: string;
+        base: string;
+        name: string;
+        ext: string;
+        isMatch: boolean;
+    }
+    
     interface IBase64RegResultNotMatch {
         isMatch: false;
     }
+    
     type TBase64RegResult = IBase64RegResultNotMatch | IBase64RegResultMatch;
 }
 
 export declare function getDataFromBase64String(base64String: string): NSFileRelate.TBase64RegResult;
+
+export declare function parsePath(pathname: string): NSFileRelate.ParsedPath;
 ```
 
 ### 其他

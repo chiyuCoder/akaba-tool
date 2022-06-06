@@ -13,6 +13,15 @@ export namespace NSFileRelate {
     }
 
     export type TBase64RegResult = IBase64RegResultNotMatch | IBase64RegResultMatch;
+
+    export interface ParsedPath {
+        root: string,
+        dir: string,
+        base: string,
+        name: string,
+        ext: string,
+        isMatch: boolean,
+    }
 }
 
 export function getDataFromBase64String(base64String: string): NSFileRelate.TBase64RegResult {
@@ -36,3 +45,28 @@ export function getDataFromBase64String(base64String: string): NSFileRelate.TBas
         isMatch: false
     };
 }
+
+
+export function parsePath(pathname: string): NSFileRelate.ParsedPath {
+    const reg = /^(\/?|(?:\w:\/)?|)?([\s\S]*?)((?:\.{1,2})|[^/]+?|)(\.[^./]*|)(?:[/]*)$/;
+    const result = pathname.match(reg);
+    if (result) {
+        return {
+            root: result[1] || "",
+            dir: result[2] || "",
+            base: (result[3] || "") + (result[4] || ""),
+            name: result[3] || "",
+            ext: result[4] || "",
+            isMatch: true,
+        };
+    }
+    return {
+        root: "",
+        dir: "",
+        base: "",
+        name: "",
+        ext: "",
+        isMatch: false,
+    }
+}
+

@@ -10,5 +10,14 @@ export declare namespace NSFileRelate {
         isMatch: false;
     }
     type TBase64RegResult = IBase64RegResultNotMatch | IBase64RegResultMatch;
+    interface ParsedPath {
+        root: string;
+        dir: string;
+        base: string;
+        name: string;
+        ext: string;
+        isMatch: boolean;
+    }
 }
 export declare function getDataFromBase64String(base64String: string): NSFileRelate.TBase64RegResult;
+export declare function parsePath(pathname: string): NSFileRelate.ParsedPath;
