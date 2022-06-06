@@ -1,5 +1,5 @@
 export declare namespace NSFuncNum {
-    type TResultIsMatchFloatFalseReason = "stringLengthMax" | "notLikeNumber" | "fractionStringLengthMax";
+    type TResultIsMatchFloatFalseReason = "stringLengthMax" | "notLikeNumber" | "fractionStringLengthMax" | "intStringLengthMax";
     interface IResultIsMatchFloatFalse {
         match: false;
         reason: TResultIsMatchFloatFalseReason;
@@ -19,7 +19,9 @@ export declare function toChineseIndex(num: number): string;
 export declare function isNumberLike(numStr: any): boolean;
 export declare function isIntLike(numStr: any): boolean;
 export declare function isPositiveInt(numStr: any): boolean;
-export declare function isMatchFloat(num: number | string, maxLen?: number, fractionMaxLen?: number): NSFuncNum.TResultIsMatchFloat;
+export declare function isPositiveNumber(numLikeStr: any): boolean;
+export declare function isMatchFloat(num: number | string, maxLen?: number, fractionMaxLen?: number, isLimitInt?: boolean): NSFuncNum.TResultIsMatchFloat;
+export declare function isConstraintNum(num: any, maxIntPartLen?: number, maxFractionLen?: number): boolean;
 export declare function getNumInRange(obj: {
     num: number;
     min: number;

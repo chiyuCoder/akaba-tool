@@ -1,6 +1,6 @@
 
 export namespace NSFuncNum {
-    export type TResultIsMatchFloatFalseReason = "stringLengthMax" | "notLikeNumber" | "fractionStringLengthMax";
+    export type TResultIsMatchFloatFalseReason = "stringLengthMax" | "notLikeNumber" | "fractionStringLengthMax" | "intStringLengthMax";
 
     export interface IResultIsMatchFloatFalse {
         match: false,
@@ -137,7 +137,14 @@ export function isPositiveInt(numStr: any) {
     return false;
 }
 
-export function isMatchFloat(num: number | string, maxLen: number = 10, fractionMaxLen: number = 2): NSFuncNum.TResultIsMatchFloat {
+export function isPositiveNumber(numLikeStr: any): boolean {
+    if (typeof numLikeStr === "string" || typeof numLikeStr === "number") {
+        return /^\+?\d+(\.\d+)?$/.test(numLikeStr.toString());
+    }
+    return false;
+}
+
+export function isMatchFloat(num: number | string, maxLen: number = 10, fractionMaxLen: number = 2, isLimitInt: boolean = true): NSFuncNum.TResultIsMatchFloat {
     const str = num.toString();
     if (isNumberLike(str)) {
         if (str.length > maxLen) {
@@ -146,12 +153,18 @@ export function isMatchFloat(num: number | string, maxLen: number = 10, fraction
                 reason: "stringLengthMax",
             };
         }
-        const [_, fractionPart] = str.split(".");
+        const [intPart, fractionPart] = str.split(".");
         if ((fractionPart || '').length > fractionMaxLen) {
             return {
                 match: false,
                 reason: "fractionStringLengthMax",
             };
+        }
+        if (isLimitInt && (intPart || "").length > (maxLen - fractionMaxLen)) {
+            return  {
+                match: false,
+                reason: "intStringLengthMax",
+            }
         }
         return {
             match: true,
@@ -161,6 +174,12 @@ export function isMatchFloat(num: number | string, maxLen: number = 10, fraction
         match: false,
         reason: "notLikeNumber"
     };
+}
+
+export function isConstraintNum(num: any, maxIntPartLen: number = 18, maxFractionLen: number = 2) {
+    const str = `^(\\d{1,${maxIntPartLen}})(?:\\.\\d{1,${maxFractionLen}})?$`;
+    const reg = new RegExp(str);
+    return reg.test(num.toString());
 }
 
 export function getNumInRange(obj: {num: number, min: number, max?: number}): number
