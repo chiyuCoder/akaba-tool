@@ -4,6 +4,25 @@ export declare namespace NSFuncArrayLike {
         min: number;
         max: number;
     }
+    interface IMatchLevelInfo<T> {
+        itemArray: T[];
+        indexArray: number[];
+    }
+    interface IMatchLevelOptionDict<T> {
+        childrenAttr: keyof T;
+        valueAttr: keyof T;
+        getIsMatch: (item: T, levelInfo: IMatchLevelInfo<T>) => boolean;
+    }
+    interface IMatchLevelResult<T> {
+        isMatch: boolean;
+        itemArray: T[];
+        indexArray: number[];
+    }
 }
 export declare function doLoop<T>(arrLike: ArrayLike<T>, loopFunc: NSFuncArrayLike.TLoopFunc<T>): void;
 export declare function getRangeOfList<T>(arrLike: ArrayLike<T>, valueFunc?: (item: T, index: number) => number): NSFuncArrayLike.IRange;
+export declare function getMatchLevelList<T>(val: string | number, list: ArrayLike<T>, optionDict?: Partial<NSFuncArrayLike.IMatchLevelOptionDict<T>>, levelInfoList?: NSFuncArrayLike.IMatchLevelInfo<T>): {
+    isMatch: boolean;
+    itemArray: T[];
+    indexArray: number[];
+};
