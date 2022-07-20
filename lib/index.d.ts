@@ -6,3 +6,4 @@ export * from "./arrayLike";
 export * from "./range";
 export * from "./normalTool";
 export * from "./fileRelate";
+export * from "./PrivateMap";
