@@ -16,7 +16,7 @@ describe("str", () => {
     const expectStr = "foo@Bar--";
     expect(camelCase(str)).toBe(expectStr);
   });
-  it("kebaCase:3", () => {
+  it("kebabCase:3", () => {
     const str = "foo@bar--";
     const expectStr = "foo@Bar--";
     expect(camelCase(str)).toBe(expectStr);
