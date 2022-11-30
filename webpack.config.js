@@ -1,4 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const path = require("path");
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const TerserPlugin = require("terser-webpack-plugin");
 // process.env.NODE_ENV = "development";
 module.exports = {
@@ -36,13 +38,13 @@ module.exports = {
             // The environment supports ECMAScript Module syntax to import ECMAScript modules (import ... from '...').
             module: false,
         },
-        globalObject: "this"
+        globalObject: "this",
     },
     optimization: {
         minimize: process.env.NODE_ENV !== "development",
         minimizer: [
             new TerserPlugin({
-                extractComments: false
+                extractComments: false,
             }),
         ],
     },

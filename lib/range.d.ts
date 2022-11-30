@@ -11,7 +11,7 @@ export declare namespace NSFuncRange {
     }
     interface IExtraSplitInfo {
         stepHandle: (step: number) => number;
-        baseRefer: 'min' | 'max';
+        baseRefer: "min" | "max";
     }
     interface IBaseSplitInfoStep extends IBaseSplitInfo {
         step: number;

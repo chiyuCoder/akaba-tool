@@ -7,3 +7,4 @@ export * from "./range";
 export * from "./normalTool";
 export * from "./fileRelate";
 export * from "./PrivateMap";
+export * from "./str";

@@ -1,4 +1,4 @@
-import { optionCopier } from './OptionCopier';
+import { optionCopier } from "./OptionCopier";
 //
 export namespace NSFuncOption {
 }

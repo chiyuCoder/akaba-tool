@@ -4,16 +4,13 @@ export namespace NSOptionCopier {
 export class OptionCopier {
     private readonly copyIdMap: Map<string, Array<any>> = new Map();
     private readonly copyIdSet: Set<string> = new Set();
-    public addressReferTypeList: Array<{ new(...args: any[]): any}> = [
+    public addressReferTypeList: Array<{ new(...args: Array<any>): any}> = [
         Map,
         Set,
     ];
 
-    public constructor() {
-    }
-
     public generateCopyId(): string {
-        const id: string = Date.now().toString(32) + '#' + Math.random();
+        const id: string = Date.now().toString(32) + "#" + Math.random();
         if (this.copyIdSet.has(id)) {
             return this.generateCopyId();
         }
@@ -59,16 +56,16 @@ export class OptionCopier {
     public copyOptionAsObj<T>(optA: T, copyId?: string): T {
         if (!copyId) {
             copyId = this.generateCopyId();
-            const list: any[] = [
-                optA
+            const list: Array<any> = [
+                optA,
             ];
             this.copyIdMap.set(copyId, list);
         }
         if (optA instanceof Array) {
             return this.copyOption(optA, copyId) as any as T;
         }
-        let copy = {} as any as T;
-        for (let attr in optA) {
+        const copy = {} as any as T;
+        for (const attr in optA) {
             if (Object.prototype.hasOwnProperty.call(optA, attr)) {
                 (copy as any)[attr] = this.copyOption(optA[attr] as any, copyId);
             }
@@ -85,8 +82,8 @@ export class OptionCopier {
         }
         if (typeof optB === "object") {
             if (typeof optA === "object") {
-                let targetA = optA as TypeA & TypeB;
-                for (let attr in optB) {
+                const targetA = optA as TypeA & TypeB;
+                for (const attr in optB) {
                     if (Object.prototype.hasOwnProperty.call(optB, attr)) {
                         (targetA as any)[attr] = this.mixedOpt((optA as any)[attr], (optB as any)[attr]);
                     }
@@ -117,7 +114,7 @@ export class OptionCopier {
             if (typeof optA === "object") {
                 if (!copyId) {
                     copyId = this.generateCopyId();
-                    const list: any[] = [
+                    const list: Array<any> = [
                         optA,
                         optB,
                     ];

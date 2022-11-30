@@ -75,9 +75,9 @@ export function toFixed(text: any, saveNum: number, nanText: string | number): s
     }
     let [intPart, fractionPart] = numStr.toString().split(".");
     if (!intPart) {
-        intPart = '0';
+        intPart = "0";
     }
-    fractionPart = fractionPart || '';
+    fractionPart = fractionPart || "";
     if (fractionPart.length < saveNum) {
         fractionPart = fractionPart.padEnd(saveNum, "0");
     } else if (fractionPart.length > saveNum) {
@@ -95,23 +95,23 @@ export function toFixed(text: any, saveNum: number, nanText: string | number): s
 
 export function toChineseIndex(num: 0, zeroStr: string): string
 export function toChineseIndex(num: number): string
-export function toChineseIndex(num: number, zeroStr: string = '零'): string {
+export function toChineseIndex(num: number, zeroStr: string = "零"): string {
     const list = [
         zeroStr,
-        '一',
-        '二',
-        '三',
-        '四',
-        '五',
-        '六',
-        '七',
-        '八',
-        '九',
-        '十',
-        '百',
-        '千',
-        '万',
-        '亿',
+        "一",
+        "二",
+        "三",
+        "四",
+        "五",
+        "六",
+        "七",
+        "八",
+        "九",
+        "十",
+        "百",
+        "千",
+        "万",
+        "亿",
     ];
     return list[num];
 }
@@ -154,7 +154,7 @@ export function isMatchFloat(num: number | string, maxLen: number = 10, fraction
             };
         }
         const [intPart, fractionPart] = str.split(".");
-        if ((fractionPart || '').length > fractionMaxLen) {
+        if ((fractionPart || "").length > fractionMaxLen) {
             return {
                 match: false,
                 reason: "fractionStringLengthMax",
@@ -164,7 +164,7 @@ export function isMatchFloat(num: number | string, maxLen: number = 10, fraction
             return  {
                 match: false,
                 reason: "intStringLengthMax",
-            }
+            };
         }
         return {
             match: true,
@@ -172,7 +172,7 @@ export function isMatchFloat(num: number | string, maxLen: number = 10, fraction
     }
     return {
         match: false,
-        reason: "notLikeNumber"
+        reason: "notLikeNumber",
     };
 }
 

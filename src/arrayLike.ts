@@ -10,8 +10,8 @@ export namespace NSFuncArrayLike {
   }
 
   export interface IMatchLevelInfo<T> {
-    itemArray: T[],
-    indexArray: number[],
+    itemArray: Array<T>,
+    indexArray: Array<number>,
   }
 
   export interface IMatchLevelOptionDict<T> {
@@ -22,8 +22,8 @@ export namespace NSFuncArrayLike {
 
   export interface IMatchLevelResult<T> {
     isMatch: boolean,
-    itemArray: T[],
-    indexArray: number[],
+    itemArray: Array<T>,
+    indexArray: Array<number>,
   }
 }
 
@@ -56,7 +56,7 @@ export function getRangeOfList<T>(arrLike: ArrayLike<T>, valueFunc?: (item: T, i
   });
   return {
     min,
-    max
+    max,
   };
 }
 
@@ -74,11 +74,11 @@ export function getMatchLevelList<T>(
   if (!(option as any).getIsMatch) {
     option.getIsMatch = function (item) {
       return (item as any)[option.valueAttr] === val;
-    }
+    };
   }
   let isMatch = false;
-  let itemArray: T[] = [];
-  let indexArray: number[] = [];
+  let itemArray: Array<T> = [];
+  let indexArray: Array<number> = [];
   doLoop(list, (item, index) => {
     const areaItem: any = item;
     itemArray = levelInfoList.itemArray.slice();

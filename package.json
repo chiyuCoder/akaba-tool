@@ -1,12 +1,13 @@
 {
   "name": "akaba-tool",
-  "version": "1.0.21",
+  "version": "1.1.0",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.config.js --mode production",
-    "jest": "jest"
+    "jest": "jest",
+    "lint": "eslint --fix ."
   },
   "keywords": [],
   "author": "chiyuCoder",
@@ -16,8 +17,11 @@
     "@babel/preset-env": "^7.14.7",
     "@babel/preset-typescript": "^7.16.7",
     "@types/jest": "^27.4.1",
+    "@typescript-eslint/eslint-plugin": "^5.45.0",
+    "@typescript-eslint/parser": "^5.45.0",
     "babel": "^6.23.0",
     "babel-loader": "^8.2.2",
+    "eslint": "^8.28.0",
     "jest": "^27.5.1",
     "terser-webpack-plugin": "^5.1.4",
     "ts-loader": "^9.2.3",

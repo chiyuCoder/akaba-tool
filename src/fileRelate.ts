@@ -42,7 +42,7 @@ export function getDataFromBase64String(base64String: string): NSFileRelate.TBas
         };
     }
     return {
-        isMatch: false
+        isMatch: false,
     };
 }
 
@@ -67,6 +67,6 @@ export function parsePath(pathname: string): NSFileRelate.ParsedPath {
         name: "",
         ext: "",
         isMatch: false,
-    }
+    };
 }
 

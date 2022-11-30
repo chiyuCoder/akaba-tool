@@ -16,7 +16,7 @@ export namespace NSFuncRange {
 
     export interface IExtraSplitInfo {
         stepHandle: (step: number) => number;
-        baseRefer: 'min' | 'max';
+        baseRefer: "min" | "max";
     }
 
     export interface IBaseSplitInfoStep extends IBaseSplitInfo {
@@ -34,9 +34,9 @@ export function getRangeOfDataList<T>(list: ArrayLike<T>, valHandle?: NSFuncRang
     let max = NaN;
     let valHandleFunc: NSFuncRange.TValHandle<T>;
     if (typeof valHandle !== "function") {
-        valHandleFunc = function (item, index) {
+        valHandleFunc = function (item) {
             return floatVal(item as any as number, 0) as number;
-        }
+        };
     } else {
         valHandleFunc = valHandle;
     }
@@ -60,12 +60,12 @@ export function getSplitInfoOf(splitInfo: NSFuncRange.IBaseSplitInfo, option: Pa
         stepHandle(step: number) {
             return step;
         },
-        baseRefer: 'min',
+        baseRefer: "min",
     };
     const resultOption: NSFuncRange.IExtraSplitInfo = optionCopier.mixedOpt(baseOption as any, option);
     let { min, max, splitNumber } = splitInfo;
     let step = resultOption.stepHandle((max - min) / splitNumber);
-    if (baseOption.baseRefer === 'max') {
+    if (baseOption.baseRefer === "max") {
         return {
             max,
             min: max - splitNumber * step,
@@ -88,7 +88,7 @@ export function getSplitInfoIntStep(splitInfo:  NSFuncRange.IBaseSplitInfo, opti
     return getSplitInfoOf(copySplitInfo, optionCopier.mixedOpt({
         stepHandle(step: number) {
             return Math.ceil(step);
-        }
+        },
     } as any, option));
 }
 

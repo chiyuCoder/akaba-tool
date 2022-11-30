@@ -5,8 +5,8 @@ export declare namespace NSFuncArrayLike {
         max: number;
     }
     interface IMatchLevelInfo<T> {
-        itemArray: T[];
-        indexArray: number[];
+        itemArray: Array<T>;
+        indexArray: Array<number>;
     }
     interface IMatchLevelOptionDict<T> {
         childrenAttr: keyof T;
@@ -15,8 +15,8 @@ export declare namespace NSFuncArrayLike {
     }
     interface IMatchLevelResult<T> {
         isMatch: boolean;
-        itemArray: T[];
-        indexArray: number[];
+        itemArray: Array<T>;
+        indexArray: Array<number>;
     }
 }
 export declare function doLoop<T>(arrLike: ArrayLike<T>, loopFunc: NSFuncArrayLike.TLoopFunc<T>): void;

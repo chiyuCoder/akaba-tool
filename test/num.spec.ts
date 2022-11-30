@@ -12,5 +12,5 @@ describe("int val", () => {
        expect(intVal(1e-9, "")).toBe(0);
        expect(intVal("1e-9", "")).toBe(1);
        expect(intVal(1234567890.234e-9, "")).toBe(1);
-   })
+   });
 });

@@ -10,9 +10,8 @@ declare class SinglePrivateMap<TBindObj extends object, TObjectPropertyDict exte
     getProperty<KeyName extends keyof TObjectPropertyDict>(keyName: KeyName): TObjectPropertyDict[KeyName];
     safeGetProperty<KeyName extends keyof TObjectPropertyDict>(keyName: KeyName): TObjectPropertyDict[KeyName];
 }
-export declare class PrivateMap<TBindObj extends object = {}, TObjectPropertyDict extends object = {}> {
+export declare class PrivateMap<TBindObj extends object = object, TObjectPropertyDict extends object = object> {
     private bindMap;
-    constructor();
     setDict(bindObj: TBindObj, dict: TObjectPropertyDict): this;
     getDict(bindObj: TBindObj): TObjectPropertyDict | undefined;
     safeGetDict(bindObj: TBindObj): TObjectPropertyDict;

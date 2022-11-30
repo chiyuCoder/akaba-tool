@@ -54,11 +54,8 @@ class SinglePrivateMap<TBindObj extends object, TObjectPropertyDict extends obje
   }
 }
 
-export class PrivateMap<TBindObj extends  object = {}, TObjectPropertyDict extends object = {}> {
+export class PrivateMap<TBindObj extends  object = object, TObjectPropertyDict extends object = object> {
   private bindMap: WeakMap<TBindObj, TObjectPropertyDict> = new WeakMap<TBindObj, TObjectPropertyDict>();
-
-  constructor() {
-  }
 
   public setDict(bindObj: TBindObj, dict: TObjectPropertyDict): this {
     this.bindMap.set(bindObj, dict);
