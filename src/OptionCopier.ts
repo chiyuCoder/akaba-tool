@@ -39,6 +39,15 @@ export class OptionCopier {
         return list;
     }
 
+    /**
+     * @since 1.1.4
+     */
+    public addCopyLogById(copyId: string, val: any): this {
+        const list = this.getCopyLogById(copyId);
+        list.push(val);
+        return this;
+    }
+
     public copyOptionAsArray<T>(optA: ArrayLike<T>,  copyId?: string): Array<T> {
         if (!copyId) {
             copyId = this.generateCopyId();
