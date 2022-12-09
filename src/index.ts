@@ -1,6 +1,7 @@
 export * from "./num";
 export * from "./NumTransferTool";
 export * from "./option";
+export * from "./BaseCopier";
 export * from "./OptionCopier";
 export * from "./arrayLike";
 export * from "./range";
