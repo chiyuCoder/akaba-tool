@@ -2,8 +2,8 @@ export namespace NSOptionCopier {
 }
 
 export class OptionCopier {
-    private readonly copyIdMap: Map<string, Array<any>> = new Map();
-    private readonly copyIdSet: Set<string> = new Set();
+    protected readonly copyIdMap: Map<string, Array<any>> = new Map();
+    protected readonly copyIdSet: Set<string> = new Set();
     public addressReferTypeList: Array<{ new(...args: Array<any>): any}> = [
         Map,
         Set,

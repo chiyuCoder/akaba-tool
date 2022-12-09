@@ -19,7 +19,7 @@ function asciiWords(str: string): RegExpMatchArray | null {
  *
  * @since 1.1.0
  */
-export function getWords(str: string = "", pattern?: RegExp): RegExpMatchArray {
+export function getWords(str: string = "", pattern?: RegExp): RegExpMatchArray | [] {
   if (pattern === undefined) {
     const result = hasUnicodeWord(str) ? matchUnicodeWordsResult(str) : asciiWords(str);
     return result || [];
@@ -91,7 +91,7 @@ export function camelCase(str: string, params: Partial<NSStringFunc.IParamCamelC
     if (index === 0 && !isUpperFirstLetter) {
       return matchLetters;
     }
-    return upperFirstLetter(getWords(matchLetters)[0]);
+    return upperFirstLetter(getWords(matchLetters)[0]!);
   });
 }
 
