@@ -1,9 +1,18 @@
 export namespace NSOptionCopier {
+    export interface ExtraHandleReturn<T> {
+        hasNext: boolean,
+        value: T,
+    }
+    export type ExtraHandle<T> = (optA: T, copier: OptionCopier, copyId: string) => ExtraHandleReturn<T>;
 }
 
 export class OptionCopier {
     protected readonly copyIdMap: Map<string, Array<any>> = new Map();
     protected readonly copyIdSet: Set<string> = new Set();
+    /**
+     * @since 1.1.2
+     */
+    public extraHandleList: Array<NSOptionCopier.ExtraHandle<any>> = [];
     public addressReferTypeList: Array<{ new(...args: Array<any>): any}> = [
         Map,
         Set,
@@ -16,6 +25,18 @@ export class OptionCopier {
         }
         this.copyIdSet.add(id);
         return id;
+    }
+
+    /**
+     * @since 1.1.2
+     */
+    public getCopyLogById(copyId: string): Array<any> {
+        let list = this.copyIdMap.get(copyId);
+        if (!list) {
+            list = [];
+            this.copyIdMap.set(copyId, list);
+        }
+        return list;
     }
 
     public copyOptionAsArray<T>(optA: ArrayLike<T>,  copyId?: string): Array<T> {
@@ -31,11 +52,11 @@ export class OptionCopier {
         if (!copyId) {
             copyId = this.generateCopyId();
         }
-        let list: Array<any> | undefined = this.copyIdMap.get(copyId);
-        if (!list) {
-            list = [];
-            this.copyIdMap.set(copyId, list);
+        const result = this.doExtraHandle(optA, copyId);
+        if (!result.hasNext) {
+            return result.value;
         }
+        let list: Array<any> | undefined = this.getCopyLogById(copyId);
         if (!optA) {
             return optA;
         }
@@ -73,7 +94,7 @@ export class OptionCopier {
         return copy;
     }
 
-    public  mixedOpt<TypeA, TypeB>(optA: TypeA, optB: TypeB): TypeA & TypeB {
+    public mixedOpt<TypeA, TypeB>(optA: TypeA, optB: TypeB): TypeA & TypeB {
         if (!optA) {
             return optB as TypeA & TypeB;
         }
@@ -131,6 +152,32 @@ export class OptionCopier {
             return this.copyOptionAsObj(optB as any, copyId) as TypeA & TypeB;
         }
         return this.copyOption(optB as any, copyId)  as TypeA & TypeB;
+    }
+
+    /**
+     * @since 1.1.2
+     */
+    public getExtraHandleReturn<T>(value: T, hasNext: boolean = true): NSOptionCopier.ExtraHandleReturn<T> {
+        return {
+            hasNext,
+            value,
+        };
+    }
+
+    /**
+     * @since 1.1.2
+     */
+    protected doExtraHandle<T>(val: T, copyId: string, index: number = 0): NSOptionCopier.ExtraHandleReturn<T> {
+        let handle = this.extraHandleList[index];
+        if (!handle) {
+            return this.getExtraHandleReturn(val);
+        }
+        const result = handle(val, this, copyId);
+        index ++;
+        if (result.hasNext && index < this.extraHandleList.length) {
+            return this.doExtraHandle<T>(result.value, copyId, index);
+        }
+        return result;
     }
 }
 
