@@ -56,6 +56,7 @@ export class OptionCopier {
         if (!result.hasNext) {
             return result.value;
         }
+        optA = result.value;
         let list: Array<any> | undefined = this.getCopyLogById(copyId);
         if (!optA) {
             return optA;
