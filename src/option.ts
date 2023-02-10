@@ -26,3 +26,7 @@ export function mixedOptAndCopyResult<TypeA, TypeB>(optA: TypeA, optB: TypeB): T
 export function jsonCopy<T>(obj: T): T {
     return optionCopier.jsonCopy(obj);
 }
+
+export function getOptionKeyAsList<T extends object>(dict: T): Array<Extract<keyof T, string>> {
+    return Array.from(Object.keys(dict)) as Array<any>;
+}
