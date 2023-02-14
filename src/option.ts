@@ -30,3 +30,7 @@ export function jsonCopy<T>(obj: T): T {
 export function getOptionKeyAsList<T extends object>(dict: T): Array<Extract<keyof T, string>> {
     return Array.from(Object.keys(dict)) as Array<any>;
 }
+
+export function unionNull<T>(obj: T, whenNull: any = {}): T {
+    return (obj || whenNull) as T;
+}
