@@ -114,3 +114,28 @@ export function getMatchLevelList<T>(
     indexArray,
   };
 }
+
+/**
+ * @since 1.2.3
+ */
+export function findOneByValue<
+  T extends object,
+  K extends keyof T
+>(
+  arrLike: ArrayLike<T>,
+  propertyName: K,
+  value: T[K]
+): { value: T | undefined, index: number } {
+  let zItem: { value: T | undefined, index: number }  = {
+    value: undefined,
+    index: -1,
+  };
+  doLoop(arrLike, (item, index) => {
+    if (item[propertyName] === value) {
+      zItem.value = item;
+      zItem.index = index;
+      return false;
+    }
+  });
+  return zItem;
+}
