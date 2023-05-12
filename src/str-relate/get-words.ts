@@ -102,3 +102,11 @@ export function camelCase(str: string, params: Partial<NSStringFunc.IParamCamelC
 export function upperFirstLetter(str: string): string {
   return str.replace(/[a-z]/, ($0) => $0.toUpperCase());
 }
+
+/**
+ * @since 1.3.2
+ */
+export function rejoinString(str: string, joinMark: string, splitMark?: string | RegExp) {
+  splitMark ??= joinMark;
+  return str.split(splitMark).join(joinMark);
+}
