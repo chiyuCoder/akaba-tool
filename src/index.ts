@@ -9,3 +9,4 @@ export * from "./normalTool";
 export * from "./fileRelate";
 export * from "./PrivateMap";
 export * from "./str";
+export * from "./NumberUnitSpliter";
