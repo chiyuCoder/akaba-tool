@@ -13,8 +13,8 @@ export class NumTransferTool {
         return intVal(text, nanText ?? this.defaultNanText);
     }
 
-    toFixed(text: unknown, saveNum: number = this.defaultSaveNum,  nanText?: string | number): string | number {
-        return toFixed(text, saveNum, nanText ?? this.defaultNanText);
+    toFixed(text: unknown, saveNum: number = this.defaultSaveNum,  nanText?: string | number): string {
+        return toFixed(text, saveNum, (nanText ?? this.defaultNanText) as string);
     }
 
     floatNum(text: unknown, saveNum: number = this.defaultSaveNum,  nanText?: string | number): string | number {
