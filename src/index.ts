@@ -10,3 +10,7 @@ export * from "./fileRelate";
 export * from "./PrivateMap";
 export * from "./str";
 export * from "./NumberUnitSpliter";
+/**
+ * @since 1.3.5
+ */
+export * from "./specialNumberChar";
