@@ -46,6 +46,19 @@ export declare function toChineseIndex(num: number): string;
 export declare function isPositiveNumber(numLikeStr: any): boolean;
 export declare function isMatchFloat(num: number | string, maxLen?: number, fractionMaxLen?: number, isLimitInt?: boolean): NSFuncNum.TResultIsMatchFloat;
 export declare function isConstraintNum(num: any, maxIntPartLen?: number, maxFractionLen?: number): boolean;
+
+/**
+ * @since 1.3.3
+ * @param str
+ * @param whenNull
+ */
+export declare function toShowString(str: any, whenNull?: string): string;
+/**
+ * @since 1.3.3
+ * @param str
+ * @param whenEmpty
+ */
+export declare function toNotEmptyString(str: any, whenEmpty?: string): string;
 ```
 
 - 类型匹配
