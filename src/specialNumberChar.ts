@@ -7,6 +7,7 @@ export function getSubscriptChar(index: number): string {
 }
 
 /**
+ * 注意有些字体显示格式问题
  * @since 1.3.5
  * @param index
  */
