@@ -14,3 +14,19 @@ export * from "./NumberUnitSpliter";
  * @since 1.3.5
  */
 export * from "./specialNumberChar";
+
+/**
+ * @since 1.3.6
+ * @param val
+ * @param compareVal
+ */
+export function isValueEqual(val: any, compareVal: any): boolean {
+  // eslint-disable-next-line eqeqeq
+  return val == compareVal;
+}
+/**
+ * @since 1.3.6
+ */
+export function isStrictEqual(val: any, compareVal: any): boolean {
+  return val === compareVal;
+}
