@@ -100,7 +100,7 @@ export function floatNum<T>(text: any, saveNum: number, nanText: T): T | number 
  */
 export function toFixed(text: any, saveNum: number, nanText: string): string {
   const tmpNan = "isNaN";
-  let numStr = floatNum(text as string, saveNum, tmpNan);
+  let numStr = floatVal(text as string, tmpNan);
   if (numStr === tmpNan) {
     return nanText;
   }
@@ -114,14 +114,24 @@ export function toFixed(text: any, saveNum: number, nanText: string): string {
   } else if (fractionPart.length > saveNum) {
     const referNum = parseInt(fractionPart.slice(0, saveNum));
     const referNumStep = parseInt(fractionPart.slice(saveNum, saveNum + 1));
-    const intNum = parseInt(intPart);
-    if (intNum > 0 && referNumStep >= 5) {
+    if (referNumStep >= 5) {
       fractionPart = (referNum + 1).toString();
     } else {
       fractionPart = referNum.toString();
     }
   }
   return [intPart, fractionPart].join(".");
+}
+
+/**
+ * @description just rename toFixed
+ * @param text
+ * @param saveNum
+ * @param nanText
+ * @returns
+ */
+export function fixedVal(text: any, saveNum: number, nanText: string): string {
+  return toFixed(text, saveNum, nanText);
 }
 
 export function toChineseIndex(num: 0, zeroStr: string): string
