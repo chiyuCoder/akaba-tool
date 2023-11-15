@@ -104,14 +104,13 @@ export function toFixed(text: any, saveNum: number, nanText: string): string {
   if (numStr === tmpNan) {
     return nanText;
   }
-  let [intPart, fractionPart] = numStr.toString().split(".");
+  let fixedNum = (numStr as number).toFixed(saveNum);
+  let [intPart, fractionPart] = fixedNum.split(".");
   if (!intPart) {
     intPart = "0";
   }
   fractionPart = fractionPart || "";
-  if (fractionPart.length < saveNum) {
-    fractionPart = fractionPart.padEnd(saveNum, "0");
-  } else if (fractionPart.length > saveNum) {
+  if (fractionPart.length > saveNum) {
     const referNum = parseInt(fractionPart.slice(0, saveNum));
     const referNumStep = parseInt(fractionPart.slice(saveNum, saveNum + 1));
     if (referNumStep >= 5) {
