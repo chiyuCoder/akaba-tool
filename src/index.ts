@@ -16,3 +16,12 @@ export * from "./NumberUnitSpliter";
 export * from "./specialNumberChar";
 
 export * from "./compare";
+
+import * as typeHelper from "./type-helper";
+
+export {
+  /**
+   * @since 1.4.0
+   */
+  typeHelper,
+};
