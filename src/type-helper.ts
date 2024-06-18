@@ -4,7 +4,7 @@
  */
 export function useSameTypeEvenNull<T>(
   obj: T | null | undefined,
-  whenNull: any
+  whenNull: T
 ): T {
   return obj ?? whenNull;
 }
@@ -14,7 +14,7 @@ export function useSameTypeEvenNull<T>(
  */
 export function usePartialTypeWhenNull<T>(
   obj: T | null | undefined,
-  whenNull: any
+  whenNull: Partial<T>
 ): Partial<T> {
   return obj ?? whenNull;
 }
