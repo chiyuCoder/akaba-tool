@@ -269,3 +269,23 @@ export function isSimilarEqual(
   let diff = Math.abs(a - b);
   return diff <= epsilon;
 }
+
+/**
+ * @since 1.4.2
+ */
+export function getMinIn(...args: Array<string | number | null | undefined>): number {
+  const numList = args.filter((item) => {
+    return !isNaN(item as number);
+  }) as Array<number>;
+  return Math.min(...numList);
+}
+
+/**
+ * @since 1.4.2
+ */
+export function getMaxIn(...args: Array<string | number | null | undefined>): number {
+  const numList = args.filter((item) => {
+    return !isNaN(item as number);
+  }) as Array<number>;
+  return Math.min(...numList);
+}
