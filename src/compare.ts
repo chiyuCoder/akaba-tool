@@ -49,3 +49,14 @@ export function isLessThan(val: any, compareVal: any): boolean {
 export function isLessOrEqual(val: any, compareVal: any): boolean {
   return val <= compareVal;
 }
+
+/**
+ * @since 1.4.3
+ * @param val
+ * @param compareVal
+ * @param epsilon
+ */
+export function isNearEqual(val: any, compareVal: any, epsilon: number = Number.EPSILON): boolean {
+  const diff = val - compareVal;
+  return diff <= epsilon;
+}

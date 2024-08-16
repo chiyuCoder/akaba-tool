@@ -14,6 +14,7 @@ export {
  * @param whenNull
  */
 export function toShowString(str: any, whenNull: string = ""): string {
+  // eslint-disable-next-line eqeqeq
   if (str == null) {
     return whenNull;
   }
