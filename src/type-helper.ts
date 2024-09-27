@@ -1,3 +1,7 @@
+/**
+ * @since 1.4.4
+ */
+export type PartialButRequired<T, K extends keyof T> = Partial<T> & Pick<T, K>;
 
 /**
  * @since 1.4.0
