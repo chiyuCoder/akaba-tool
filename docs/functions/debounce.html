@@ -1,4 +1,4 @@
-<!DOCTYPE html><html class="default" lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>getSubscriptChar | akaba-tool</title><meta name="description" content="Documentation for akaba-tool"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="../assets/style.css"/><link rel="stylesheet" href="../assets/highlight.css"/><script async src="../assets/search.js" id="search-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os"</script><header class="tsd-page-toolbar">
+<!DOCTYPE html><html class="default" lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>debounce | akaba-tool</title><meta name="description" content="Documentation for akaba-tool"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="../assets/style.css"/><link rel="stylesheet" href="../assets/highlight.css"/><script async src="../assets/search.js" id="search-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os"</script><header class="tsd-page-toolbar">
 <div class="tsd-toolbar-contents container">
 <div class="table-cell" id="tsd-search" data-base="..">
 <div class="field"><label for="tsd-search-field" class="tsd-widget tsd-toolbar-icon search no-caption"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M15.7824 13.833L12.6666 10.7177C12.5259 10.5771 12.3353 10.499 12.1353 10.499H11.6259C12.4884 9.39596 13.001 8.00859 13.001 6.49937C13.001 2.90909 10.0914 0 6.50048 0C2.90959 0 0 2.90909 0 6.49937C0 10.0896 2.90959 12.9987 6.50048 12.9987C8.00996 12.9987 9.39756 12.4863 10.5008 11.6239V12.1332C10.5008 12.3332 10.5789 12.5238 10.7195 12.6644L13.8354 15.7797C14.1292 16.0734 14.6042 16.0734 14.8948 15.7797L15.7793 14.8954C16.0731 14.6017 16.0731 14.1267 15.7824 13.833ZM6.50048 10.499C4.29094 10.499 2.50018 8.71165 2.50018 6.49937C2.50018 4.29021 4.28781 2.49976 6.50048 2.49976C8.71001 2.49976 10.5008 4.28708 10.5008 6.49937C10.5008 8.70852 8.71314 10.499 6.50048 10.499Z" fill="var(--color-text)"></path></svg></label><input type="text" id="tsd-search-field" aria-label="Search"/></div>
@@ -13,23 +13,73 @@
 <div class="tsd-page-title">
 <ul class="tsd-breadcrumb">
 <li><a href="../modules.html">akaba-tool</a></li>
-<li><a href="getSubscriptChar.html">getSubscriptChar</a></li></ul>
-<h1>Function getSubscriptChar</h1></div>
+<li><a href="debounce.html">debounce</a></li></ul>
+<h1>Function debounce</h1></div>
 <section class="tsd-panel">
 <ul class="tsd-signatures tsd-kind-function">
-<li class="tsd-signature tsd-anchor-link" id="getSubscriptChar">get<wbr/>Subscript<wbr/>Char<span class="tsd-signature-symbol">(</span>index<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><a href="#getSubscriptChar" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" id="icon-anchor-a"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" id="icon-anchor-b"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" id="icon-anchor-c"></path></svg></a></li>
+<li class="tsd-signature tsd-anchor-link" id="debounce">debounce<span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span>func<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">T</span>, wait<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">DebounceSettingsLeading</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">DebouncedFuncLeading</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">T</span><span class="tsd-signature-symbol">&gt;</span><a href="#debounce" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" id="icon-anchor-a"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" id="icon-anchor-b"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" id="icon-anchor-c"></path></svg></a></li>
 <li class="tsd-description">
-<div class="tsd-comment tsd-typography">
-<h3>Since</h3><p>1.3.5</p>
+<div class="tsd-comment tsd-typography"><p>Creates a debounced function that delays invoking <code>func</code> until after <code>wait</code>
+milliseconds have elapsed since the last time the debounced function was
+invoked. The debounced function comes with a <code>cancel</code> method to cancel
+delayed <code>func</code> invocations and a <code>flush</code> method to immediately invoke them.
+Provide <code>options</code> to indicate whether <code>func</code> should be invoked on the
+leading and/or trailing edge of the <code>wait</code> timeout. The <code>func</code> is invoked
+with the last arguments provided to the debounced function. Subsequent
+calls to the debounced function return the result of the last <code>func</code>
+invocation.</p>
+<p><strong>Note:</strong> If <code>leading</code> and <code>trailing</code> options are <code>true</code>, <code>func</code> is
+invoked on the trailing edge of the timeout only if the debounced function
+is invoked more than once during the <code>wait</code> timeout.</p>
+<p>If <code>wait</code> is <code>0</code> and <code>leading</code> is <code>false</code>, <code>func</code> invocation is deferred
+until to the next tick, similar to <code>setTimeout</code> with a timeout of <code>0</code>.</p>
+<p>See <a href="https://css-tricks.com/debouncing-throttling-explained-examples/">David Corbacho&#39;s article</a>
+for details over the differences between <code>_.debounce</code> and <code>_.throttle</code>.</p>
+
+<h3>Static</h3>
+<h3>Member Of</h3><p>_</p>
+
+<h3>Since</h3><p>0.1.0</p>
+
+<h3>Returns</h3><p>Returns the new debounced function.</p>
+
+<h3>Example</h3><p>// Avoid costly calculations while the window size is in flux.
+jQuery(window).on(&#39;resize&#39;, _.debounce(calculateLayout, 150));</p>
+<p>// Invoke <code>sendMail</code> when clicked, debouncing subsequent calls.
+jQuery(element).on(&#39;click&#39;, _.debounce(sendMail, 300, {
+  &#39;leading&#39;: true,
+  &#39;trailing&#39;: false
+}));</p>
+<p>// Ensure <code>batchLog</code> is invoked once after 1 second of debounced calls.
+var debounced = _.debounce(batchLog, 250, { &#39;maxWait&#39;: 1000 });
+var source = new EventSource(&#39;/stream&#39;);
+jQuery(source).on(&#39;message&#39;, debounced);</p>
+<p>// Cancel the trailing debounced invocation.
+jQuery(window).on(&#39;popstate&#39;, debounced. cancel);</p>
 </div>
+<section class="tsd-panel tsd-type-parameters">
+<h4>Type Parameters</h4>
+<ul class="tsd-type-parameters">
+<li>
+<h4>T<span class="tsd-signature-symbol"> extends </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span></h4></li></ul></section>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>index: <span class="tsd-signature-type">number</span></h5></li></ul></div>
-<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4><aside class="tsd-sources">
+<h5>func: <span class="tsd-signature-type" data-tsd-kind="Type parameter">T</span></h5>
+<div class="tsd-comment tsd-typography"><p>The function to debounce.</p>
+</div></li>
+<li>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> wait: <span class="tsd-signature-type">number</span></h5>
+<div class="tsd-comment tsd-typography"><p>The number of milliseconds to delay.</p>
+</div></li>
+<li>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> options: <span class="tsd-signature-type">DebounceSettingsLeading</span></h5>
+<div class="tsd-comment tsd-typography"><p>The options object.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">DebouncedFuncLeading</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">T</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in specialNumberChar.ts:5</li></ul></aside></li></ul></section></div>
+<li>Defined in debounce.ts:113</li></ul></aside></li></ul></section></div>
 <div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 <div class="tsd-navigation settings">
 <details class="tsd-index-accordion"><summary class="tsd-accordion-summary">
@@ -76,7 +126,7 @@
 <li class="tsd-kind-function"><a href="copyOption.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>copy<wbr/>Option</a></li>
 <li class="tsd-kind-function"><a href="copyOptionAsArray.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>copy<wbr/>Option<wbr/>As<wbr/>Array</a></li>
 <li class="tsd-kind-function"><a href="copyOptionAsObj.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>copy<wbr/>Option<wbr/>As<wbr/>Obj</a></li>
-<li class="tsd-kind-function"><a href="debounce.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>debounce</a></li>
+<li class="current tsd-kind-function"><a href="debounce.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>debounce</a></li>
 <li class="tsd-kind-function"><a href="delay.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>delay</a></li>
 <li class="tsd-kind-function"><a href="doLoop.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>do<wbr/>Loop</a></li>
 <li class="tsd-kind-function"><a href="findOneByValue.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>find<wbr/>One<wbr/>By<wbr/>Value</a></li>
@@ -94,7 +144,7 @@
 <li class="tsd-kind-function"><a href="getSplitInfoIntStep.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>get<wbr/>Split<wbr/>Info<wbr/>Int<wbr/>Step</a></li>
 <li class="tsd-kind-function"><a href="getSplitInfoOf.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>get<wbr/>Split<wbr/>Info<wbr/>Of</a></li>
 <li class="tsd-kind-function"><a href="getSplitInfoTimesStep.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>get<wbr/>Split<wbr/>Info<wbr/>Times<wbr/>Step</a></li>
-<li class="current tsd-kind-function"><a href="getSubscriptChar.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>get<wbr/>Subscript<wbr/>Char</a></li>
+<li class="tsd-kind-function"><a href="getSubscriptChar.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>get<wbr/>Subscript<wbr/>Char</a></li>
 <li class="tsd-kind-function"><a href="getSuperscriptChar.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>get<wbr/>Superscript<wbr/>Char</a></li>
 <li class="tsd-kind-function"><a href="getTag.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>get<wbr/>Tag</a></li>
 <li class="tsd-kind-function"><a href="getWords.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>get<wbr/>Words</a></li>
