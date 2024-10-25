@@ -53,3 +53,8 @@ export function dangerBindKeyValueAt<
   output[keyName] = value;
   return output;
 }
+
+export function ensureNonNull<T>(obj: T | null | undefined): T {
+  return obj as any;
+}
+
