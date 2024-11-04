@@ -15,6 +15,7 @@ module.exports = {
         "OptionCopier": path.join(__dirname, "./src/OptionCopier.ts"),
         "range": path.join(__dirname, "./src/range.ts"),
         "PrivateMap": path.join(__dirname, "./src/PrivateMap.ts"),
+        "type-helper": path.join(__dirname, "./src/type-helper.ts"),
     },
     output: {
         path: path.join(__dirname, "./lib"),
