@@ -289,3 +289,19 @@ export function getMaxIn(...args: Array<string | number | null | undefined>): nu
   }) as Array<number>;
   return Math.min(...numList);
 }
+
+/**
+ * @description 当且仅当sth为 [string|number] 类型时，会转成 number；其他类型直接输出为NaN
+ * @since 1.4.8
+ * @param sth 
+ * @returns 
+ */
+export function toNumber(sth?: unknown): number {
+  if (typeof sth === "string") {
+    return Number(sth);
+  }
+  if (typeof sth === "number") {
+    return sth;
+  }
+  return NaN;
+}
