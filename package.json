@@ -3,6 +3,7 @@
   "version": "1.4.10",
   "description": "",
   "main": "lib/index.js",
+  "typings": "./lib",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.config.js --mode production",
