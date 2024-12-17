@@ -29,13 +29,13 @@ export namespace NSFileRelate {
 }
 
 export function getDataFromBase64String(base64String: string): NSFileRelate.TBase64RegResult {
-    const reg = /^data:(\w+)\/(\w+);(.*)?base64,(.*)/;
+    const reg = /^data:(?:(\w+)\/(\w+))?(?:;(.*)?base64)?,(.*)/;
     const result = base64String.match(reg);
     if (result) {
         const groups: any = {
-            dataType: result[1],
-            dataSuffix: result[2],
-            dataData: result[4],
+            dataType: result[1] || "",
+            dataSuffix: result[2] || "",
+            dataData: result[4] || "",
         };
         return {
             isMatch: true,
@@ -43,7 +43,7 @@ export function getDataFromBase64String(base64String: string): NSFileRelate.TBas
             dataSuffix: groups.dataSuffix,
             dataData: groups.dataData,
             mime: groups.dataType + "/" + groups.dataSuffix,
-            additionalInfo: result[3],
+            additionalInfo: result[3] || "",
         };
     }
     return {
