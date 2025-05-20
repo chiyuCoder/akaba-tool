@@ -106,3 +106,24 @@ export function getSplitInfoTimesStep(splitInfo:  NSFuncRange.IBaseSplitInfo, op
         },
     } as any, option));
 }
+
+/**
+ * @since 1.4.12
+ * @param from 
+ * @param to 
+ * @param step 
+ * @returns 
+ */
+export function buildRangeList(from: number, to: number = 0, step: number = 1): Array<number> {
+    const resultList: Array<number> = [];
+    if (
+        (step > 0 && from > to) ||
+        (step < 0 && to < from)
+    ) {
+        [from, to] = [to, from];
+    }
+    for (let i = from; i < to; i += step) {
+        resultList.push(i);
+    }
+    return resultList;
+}
