@@ -58,3 +58,11 @@ export function ensureNonNull<T>(obj: T | null | undefined): T {
   return obj as any;
 }
 
+/**
+ * @since 1.4.13
+ * @param obj 
+ * @returns 
+ */
+export function getStringKeyListFrom<T extends object>(obj: T): Array<Extract<keyof T, string>> {
+  return Reflect.ownKeys(obj).filter((keyName) => typeof keyName === "string") as Array<any>;
+}
