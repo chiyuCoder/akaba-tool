@@ -4,6 +4,15 @@
 export type PartialButRequired<T, K extends keyof T> = Partial<T> & Pick<T, K>;
 
 /**
+ * @since 1.4.13
+ */
+export type StringKeyOf<T> = Extract<keyof T, string>;
+/**
+ * @since 1.4.13
+ */
+export type StrToNum<T extends string> = T extends `${infer N extends number}` ? N : never;
+
+/**
  * @since 1.4.0
  */
 export function useSameTypeEvenNull<T>(
@@ -63,6 +72,6 @@ export function ensureNonNull<T>(obj: T | null | undefined): T {
  * @param obj 
  * @returns 
  */
-export function getStringKeyListFrom<T extends object>(obj: T): Array<Extract<keyof T, string>> {
+export function getStringKeyListFrom<T extends object>(obj: T): Array<StringKeyOf<T>> {
   return Reflect.ownKeys(obj).filter((keyName) => typeof keyName === "string") as Array<any>;
 }
