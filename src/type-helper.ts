@@ -75,3 +75,12 @@ export function ensureNonNull<T>(obj: T | null | undefined): T {
 export function getStringKeyListFrom<T extends object>(obj: T): Array<StringKeyOf<T>> {
   return Reflect.ownKeys(obj).filter((keyName) => typeof keyName === "string") as Array<any>;
 }
+
+/**
+ * @since 1.4.14
+ * @param obj 
+ * @returns 
+ */
+export function useAsType<T>(obj: T): T {
+  return obj;
+}
