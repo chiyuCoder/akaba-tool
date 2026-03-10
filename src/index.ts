@@ -16,6 +16,7 @@ export * from "./NumberUnitSpliter";
 export * from "./specialNumberChar";
 
 export * from "./compare";
+export * from "./func-helper";
 
 import * as typeHelper from "./type-helper";
 
