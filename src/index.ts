@@ -1,3 +1,7 @@
+export * from "./delay-helper";
+export * as delayHelper from "./delay-helper";
+export * from "./env-helper";
+export * as envHelper from "./env-helper";
 export * from "./num";
 export * from "./NumTransferTool";
 export * from "./option";
@@ -5,7 +9,6 @@ export * from "./BaseCopier";
 export * from "./OptionCopier";
 export * from "./arrayLike";
 export * from "./range";
-export * from "./normalTool";
 export * from "./fileRelate";
 export * from "./PrivateMap";
 export * from "./str";
