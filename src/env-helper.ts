@@ -100,4 +100,41 @@ export class EnvHelper<
   public getEnvId(envId: string): boolean {
     return this.envId === envId;
   }
+
+  public getConfigOnEnv(envId: EnvId) {
+    return this.envConfigMap.get(envId);
+  }
+
+  public addAbilityOnEnv(envId: EnvId, abilityId: AbilityId) {
+    const targetConfig = this.getConfigOnEnv(envId);
+    if (targetConfig) {
+      if (targetConfig.abilityIdList.indexOf(abilityId) >= 0) {
+        return this;
+      }
+      targetConfig.abilityIdList.push(abilityId);
+      return this;
+    }
+    this.envConfigMap.set(envId, {
+      abilityIdList: [
+        abilityId,
+      ],
+    });
+    return this;
+  }
+}
+
+let globalEnvHelper = new EnvHelper<"production" | "development", "printIt">({
+  production: {
+    abilityIdList: [],
+  },
+  development: {
+    abilityIdList: [],
+  },
+}, "production");
+
+export function getGlobalEnvHelper<
+  EnvId extends string,
+  AbilityId extends string
+>() {
+  return globalEnvHelper as EnvHelper<EnvId, AbilityId>;
 }
