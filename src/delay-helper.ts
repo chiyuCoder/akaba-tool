@@ -8,6 +8,7 @@ export function delay(delayTime: number = 16): Promise<void> {
 
 export {
   debounce,
+  throttle,
 } from "./debounce";
 
 /**

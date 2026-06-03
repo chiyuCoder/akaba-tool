@@ -69,6 +69,7 @@ module.exports = {
         extensions: [".ts", ".es6", ".js"],
         alias: {
             "@": path.join(__dirname, "./src"),
+            "@akaba-tool": path.join(__dirname, "./src"),
         },
     },
 };
