@@ -1,3 +1,4 @@
+export * from "./type-helper";
 export * from "./delay-helper";
 export * as delayHelper from "./delay-helper";
 export * from "./env-helper";

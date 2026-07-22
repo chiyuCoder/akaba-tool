@@ -63,7 +63,7 @@ export function dangerBindKeyValueAt<
   return output;
 }
 
-export function ensureNonNull<T>(obj: T | null | undefined): T {
+export function ensureNonNull<T>(obj: T | null | undefined): NonNullable<T> {
   return obj as any;
 }
 
@@ -84,3 +84,23 @@ export function getStringKeyListFrom<T extends object>(obj: T): Array<StringKeyO
 export function useAsType<T>(obj: T): T {
   return obj;
 }
+
+/**
+ * @since 1.4.19
+ * @description TypeScript类型友好型的 keyName in obj
+ * @param obj 
+ * @param keyName 
+ * @returns 
+ */
+export function getKeyIsIn<
+  Obj extends object,
+  KeyName extends string,
+>(obj: Obj, keyName: KeyName): obj is HasTargetKeyObject<Obj, KeyName> {
+  return keyName in obj;
+}
+
+export type HasTargetKeyObject<Obj extends object, KeyName extends string> = Obj extends Record<KeyName, any>
+  ? Obj
+  : KeyName extends keyof Obj 
+    ? Obj 
+    : never;
