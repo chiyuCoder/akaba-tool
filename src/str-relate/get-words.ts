@@ -110,3 +110,19 @@ export function rejoinString(str: string, joinMark: string, splitMark?: string |
   splitMark ??= joinMark;
   return str.split(splitMark).join(joinMark);
 }
+
+/**
+ * @since 1.4.20
+ * @param strLike 
+ * @param splitMark default is ","
+ * @returns 
+ */
+export function splitStringExceptEmpty(
+  strLike: string | number | null | undefined, 
+  splitMark: string | RegExp = ","
+): Array<string> {
+  const strVal = (strLike ?? "").toString();
+  return strVal.split(splitMark).filter((one) => {
+    return !one;
+  });
+}
