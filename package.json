@@ -42,5 +42,8 @@
   "peerDependencies": {
     "lodash.debounce": "^4.0.8",
     "lodash.throttle": "^4.1.1"
+  },
+  "dependencies": {
+    "ts-jest": "^27.1.5"
   }
 }
