@@ -76,6 +76,12 @@
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
 <li class="tsd-signature tsd-anchor-link" id="floatNum.floatNum-1">float<wbr/>Num<span class="tsd-signature-symbol">(</span>text<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span>, saveNum<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, nanText<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><a href="#floatNum.floatNum-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography">
+<h3>Description</h3><p>parseFloat 然后根据 saveNum 四舍五入之后的数字
+-- floatNum(null, 2, &#39;-&#39;) 返回 &quot;-&quot;<br>-- floatNum(undefined, 2, &#39;-&#39;) 返回 &quot;-&quot;<br>-- floatNum(NaN, 2, &#39;-&#39;) 返回 &quot;-&quot;<br>-- floatNum(0, 2, &#39;-&#39;) 返回 0<br>-- floatNum(&quot;0&quot;, 2, &#39;-&#39;) 返回 0<br>-- floatNum(&quot;0px&quot;, 2, &#39;-&#39;) 返回 0<br>-- floatNum(&quot;1e-9&quot;, 2, &#39;-&#39;) 返回 0<br>-- floatNum(1e-9, 2, &#39;-&#39;) 返回 0<br>-- floatNum(&quot;1e&quot;, 2, &#39;-&#39;) 返回 1<br>-- floatNum(&quot;1.2300px&quot;, 2, &#39;-&#39;) 返回 1.23<br>-- floatNum(&quot;1.2300&quot;, 2, &#39;-&#39;) 返回 1.23<br>-- floatNum(&quot;1.2340&quot;, 2, &#39;-&#39;) 返回 1.23<br>-- floatNum(&quot;1.2350&quot;, 2, &#39;-&#39;) 返回 1.24</p>
+
+<h3>Since</h3><p>1.3.4 更新类名 (update function name)</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
@@ -87,12 +93,17 @@
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> nanText: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in src/NumTransferTool.ts:20</li></ul></aside></li></ul></section>
+<li>Defined in src/NumTransferTool.ts:95</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="floatVal" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>float<wbr/>Val</span><a href="#floatVal" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
 <li class="tsd-signature tsd-anchor-link" id="floatVal.floatVal-1">float<wbr/>Val<span class="tsd-signature-symbol">(</span>text<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span>, nanText<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><a href="#floatVal.floatVal-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography">
+<h3>Description</h3><p>parseFloat 的 TypeScript 版本<br>-- floatVal(null,&#39;-&#39;) 返回值是 &quot;-&quot;<br>-- floatVal(undefined,&#39;-&#39;) 返回值是 &quot;-&quot;<br>-- floatVal(NaN,&#39;-&#39;) 返回值是 &quot;-&quot;<br>-- floatVal(0, &quot;-&quot;) 返回值是 0<br>-- floatVal(&quot;0&quot;, &quot;-&quot;) 返回值是 0<br>-- floatVal(&quot;0px&quot;, &quot;-&quot;) 返回值是 0<br>-- floatVal(&quot;1e&quot;, &quot;-&quot;) 返回值是 1<br>-- floatVal(&quot;1e-9&quot;, &quot;-&quot;) 返回值是 1e-9<br>-- floatVal(1e-9, &quot;-&quot;) 返回值是 1e-9<br>-- floatVal(&quot;1.2300px&quot;, &quot;-&quot;) 返回值是 1.23<br>-- floatVal(&quot;1.2300&quot;, &quot;-&quot;) 返回值是 1.23</p>
+
+<h3>Since</h3><p>1.3.4 更新类名 (update function name)</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
@@ -102,12 +113,17 @@
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> nanText: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in src/NumTransferTool.ts:8</li></ul></aside></li></ul></section>
+<li>Defined in src/NumTransferTool.ts:26</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="intVal" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>int<wbr/>Val</span><a href="#intVal" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
 <li class="tsd-signature tsd-anchor-link" id="intVal.intVal-1">int<wbr/>Val<span class="tsd-signature-symbol">(</span>text<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span>, nanText<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><a href="#intVal.intVal-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography">
+<h3>Description</h3><p>parseInt 的 TypeScript 版本<br>-- intVal(null,&#39;-&#39;) 返回值是 &quot;-&quot;<br>-- intVal(undefined,&#39;-&#39;) 返回值是 &quot;-&quot;<br>-- intVal(NaN,&#39;-&#39;) 返回值是 &quot;-&quot;<br>-- intVal(0, &quot;-&quot;) 返回值是 0<br>-- intVal(&quot;0&quot;, &quot;-&quot;) 返回值是 0<br>-- intVal(&quot;0px&quot;, &quot;-&quot;) 返回值是 0<br>-- intVal(&quot;1e&quot;, &quot;-&quot;) 返回值是 1<br>-- intVal(&quot;1e-9&quot;, &quot;-&quot;) 返回值是 1<br>-- intVal(1e-9, &quot;-&quot;) 返回值是 0</p>
+
+<h3>Since</h3><p>1.3.4 更新类名 (update function name)</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
@@ -117,12 +133,16 @@
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> nanText: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in src/NumTransferTool.ts:12</li></ul></aside></li></ul></section>
+<li>Defined in src/NumTransferTool.ts:45</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="toFixed" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>to<wbr/>Fixed</span><a href="#toFixed" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
 <li class="tsd-signature tsd-anchor-link" id="toFixed.toFixed-1">to<wbr/>Fixed<span class="tsd-signature-symbol">(</span>text<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span>, saveNum<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, nanText<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><a href="#toFixed.toFixed-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography">
+<h3>Version</h3><p>1.3.4 parseFloat 然后根据 saveNum 四舍五入之后的数字 ( 同 fixedVal 函数)
+-- fixedVal(null, 2, &#39;-&#39;) 返回 &quot;-&quot;<br>-- fixedVal(undefined, 2, &#39;-&#39;) 返回 &quot;-&quot;<br>-- fixedVal(NaN, 2, &#39;-&#39;) 返回 &quot;-&quot;<br>-- fixedVal(0, 2, &#39;-&#39;) 返回 &quot;0.00&quot;<br>-- fixedVal(&quot;0&quot;, 2, &#39;-&#39;) 返回 &quot;0.00&quot;<br>-- fixedVal(&quot;0px&quot;, 2, &#39;-&#39;) 返回 &quot;0.00&quot;<br>-- fixedVal(&quot;1e-9&quot;, 2, &#39;-&#39;) 返回 &quot;0.00&quot;<br>-- fixedVal(1e-9, 2, &#39;-&#39;) 返回 &quot;0.00&quot;<br>-- fixedVal(&quot;1e&quot;, 2, &#39;-&#39;) 返回 &quot;1.00&quot;<br>-- fixedVal(&quot;1.2300px&quot;, 2, &#39;-&#39;) 返回 &quot;1.23&quot;<br>-- fixedVal(&quot;1.2300&quot;, 2, &#39;-&#39;) 返回 &quot;1.23&quot;<br>-- fixedVal(&quot;1.2340&quot;, 2, &#39;-&#39;) 返回 &quot;1.23&quot;<br>-- fixedVal(&quot;1.2350&quot;, 2, &#39;-&#39;) 返回 &quot;1.24&quot;<br>-- fixedVal(-1.2, 2, &quot;&quot;) 返回 &quot;-1.20&quot;<br>-- fixedVal(1.204, 2, &quot;&quot;) 返回 &quot;1.20&quot;<br>-- fixedVal(1.205, 2, &quot;&quot;) 返回 &quot;-1.21&quot;<br>-- fixedVal(-1.204, 2, &quot;&quot;) 返回 &quot;-1.20&quot;<br>-- fixedVal(-1.205, 2, &quot;&quot;) 返回 &quot;-1.21&quot;</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
@@ -134,7 +154,7 @@
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> nanText: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in src/NumTransferTool.ts:16</li></ul></aside></li></ul></section></section></div>
+<li>Defined in src/NumTransferTool.ts:72</li></ul></aside></li></ul></section></section></div>
 <div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 <div class="tsd-navigation settings">
 <details class="tsd-index-accordion"><summary class="tsd-accordion-summary">

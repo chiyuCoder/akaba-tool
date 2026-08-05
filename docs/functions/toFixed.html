@@ -20,7 +20,8 @@
 <li class="tsd-signature tsd-anchor-link" id="toFixed">to<wbr/>Fixed<span class="tsd-signature-symbol">(</span>text<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, saveNum<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, nanText<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><a href="#toFixed" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" id="icon-anchor-a"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" id="icon-anchor-b"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" id="icon-anchor-c"></path></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography">
-<h3>Version</h3><p>1.3.4 更新类名 (update function name)</p>
+<h3>Version</h3><p>1.3.4 parseFloat 然后根据 saveNum 四舍五入之后的数字 ( 同 fixedVal 函数)
+-- fixedVal(null, 2, &#39;-&#39;) 返回 &quot;-&quot;<br>-- fixedVal(undefined, 2, &#39;-&#39;) 返回 &quot;-&quot;<br>-- fixedVal(NaN, 2, &#39;-&#39;) 返回 &quot;-&quot;<br>-- fixedVal(0, 2, &#39;-&#39;) 返回 &quot;0.00&quot;<br>-- fixedVal(&quot;0&quot;, 2, &#39;-&#39;) 返回 &quot;0.00&quot;<br>-- fixedVal(&quot;0px&quot;, 2, &#39;-&#39;) 返回 &quot;0.00&quot;<br>-- fixedVal(&quot;1e-9&quot;, 2, &#39;-&#39;) 返回 &quot;0.00&quot;<br>-- fixedVal(1e-9, 2, &#39;-&#39;) 返回 &quot;0.00&quot;<br>-- fixedVal(&quot;1e&quot;, 2, &#39;-&#39;) 返回 &quot;1.00&quot;<br>-- fixedVal(&quot;1.2300px&quot;, 2, &#39;-&#39;) 返回 &quot;1.23&quot;<br>-- fixedVal(&quot;1.2300&quot;, 2, &#39;-&#39;) 返回 &quot;1.23&quot;<br>-- fixedVal(&quot;1.2340&quot;, 2, &#39;-&#39;) 返回 &quot;1.23&quot;<br>-- fixedVal(&quot;1.2350&quot;, 2, &#39;-&#39;) 返回 &quot;1.24&quot;<br>-- fixedVal(-1.2, 2, &quot;&quot;) 返回 &quot;-1.20&quot;<br>-- fixedVal(1.204, 2, &quot;&quot;) 返回 &quot;1.20&quot;<br>-- fixedVal(1.205, 2, &quot;&quot;) 返回 &quot;-1.21&quot;<br>-- fixedVal(-1.204, 2, &quot;&quot;) 返回 &quot;-1.20&quot;<br>-- fixedVal(-1.205, 2, &quot;&quot;) 返回 &quot;-1.21&quot;</p>
 </div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
@@ -33,7 +34,7 @@
 <h5>nanText: <span class="tsd-signature-type">string</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in src/num.ts:101</li></ul></aside></li></ul></section></div>
+<li>Defined in src/num.ts:155</li></ul></aside></li></ul></section></div>
 <div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 <div class="tsd-navigation settings">
 <details class="tsd-index-accordion"><summary class="tsd-accordion-summary">
@@ -145,6 +146,7 @@
 <li class="tsd-kind-function"><a href="mixedOptAndCopyResult.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>mixed<wbr/>Opt<wbr/>And<wbr/>Copy<wbr/>Result</a></li>
 <li class="tsd-kind-function"><a href="parsePath.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>parse<wbr/>Path</a></li>
 <li class="tsd-kind-function"><a href="rejoinString.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>rejoin<wbr/>String</a></li>
+<li class="tsd-kind-function"><a href="splitStringExceptEmpty.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>split<wbr/>String<wbr/>Except<wbr/>Empty</a></li>
 <li class="tsd-kind-function"><a href="stringify.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>stringify</a></li>
 <li class="tsd-kind-function"><a href="stringifyNumber.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>stringify<wbr/>Number</a></li>
 <li class="tsd-kind-function"><a href="toChineseIndex.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>to<wbr/>Chinese<wbr/>Index</a></li>

@@ -20,13 +20,15 @@
 <li class="tsd-signature tsd-anchor-link" id="intVal">int<wbr/>Val<span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span>text<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, nanText<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><a href="#intVal" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" id="icon-anchor-a"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" id="icon-anchor-b"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" id="icon-anchor-c"></path></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography">
-<h3>Version</h3><p>1.3.4 更新类名 (update function name)</p>
+<h3>Description</h3><p>parseInt 的 TypeScript 版本<br>-- intVal(null,&#39;-&#39;) 返回值是 &quot;-&quot;<br>-- intVal(undefined,&#39;-&#39;) 返回值是 &quot;-&quot;<br>-- intVal(NaN,&#39;-&#39;) 返回值是 &quot;-&quot;<br>-- intVal(0, &quot;-&quot;) 返回值是 0<br>-- intVal(&quot;0&quot;, &quot;-&quot;) 返回值是 0<br>-- intVal(&quot;0px&quot;, &quot;-&quot;) 返回值是 0<br>-- intVal(&quot;1e&quot;, &quot;-&quot;) 返回值是 1<br>-- intVal(&quot;1e-9&quot;, &quot;-&quot;) 返回值是 1<br>-- intVal(1e-9, &quot;-&quot;) 返回值是 0</p>
+
+<h3>Since</h3><p>1.3.4 更新类名 (update function name)</p>
 </div>
 <section class="tsd-panel tsd-type-parameters">
 <h4>Type Parameters</h4>
 <ul class="tsd-type-parameters">
 <li>
-<h4>T</h4></li></ul></section>
+<h4>T<span class="tsd-signature-symbol"> extends </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h4></li></ul></section>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
@@ -36,7 +38,7 @@
 <h5>nanText: <span class="tsd-signature-type" data-tsd-kind="Type parameter">T</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type" data-tsd-kind="Type parameter">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in src/num.ts:71</li></ul></aside></li></ul></section></div>
+<li>Defined in src/num.ts:93</li></ul></aside></li></ul></section></div>
 <div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 <div class="tsd-navigation settings">
 <details class="tsd-index-accordion"><summary class="tsd-accordion-summary">
@@ -148,6 +150,7 @@
 <li class="tsd-kind-function"><a href="mixedOptAndCopyResult.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>mixed<wbr/>Opt<wbr/>And<wbr/>Copy<wbr/>Result</a></li>
 <li class="tsd-kind-function"><a href="parsePath.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>parse<wbr/>Path</a></li>
 <li class="tsd-kind-function"><a href="rejoinString.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>rejoin<wbr/>String</a></li>
+<li class="tsd-kind-function"><a href="splitStringExceptEmpty.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>split<wbr/>String<wbr/>Except<wbr/>Empty</a></li>
 <li class="tsd-kind-function"><a href="stringify.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>stringify</a></li>
 <li class="tsd-kind-function"><a href="stringifyNumber.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>stringify<wbr/>Number</a></li>
 <li class="tsd-kind-function"><a href="toChineseIndex.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>to<wbr/>Chinese<wbr/>Index</a></li>
