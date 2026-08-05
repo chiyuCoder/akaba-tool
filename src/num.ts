@@ -22,7 +22,7 @@ export namespace NSFuncNum {
  * @param text
  * @param nanText
  */
-function showNum<T>(text: any, nanText: T): T | number {
+function showNum<T extends string | number>(text: any, nanText: T): T | number {
   if (isNaN(text)) {
     return nanText;
   }
@@ -30,11 +30,23 @@ function showNum<T>(text: any, nanText: T): T | number {
 }
 
 /**
- * @version 1.3.4 更新类名 (update function name)
+ * @description parseFloat 的 TypeScript 版本  
+ * -- floatVal(null,'-') 返回值是 "-"  
+ * -- floatVal(undefined,'-') 返回值是 "-"  
+ * -- floatVal(NaN,'-') 返回值是 "-"  
+ * -- floatVal(0, "-") 返回值是 0  
+ * -- floatVal("0", "-") 返回值是 0  
+ * -- floatVal("0px", "-") 返回值是 0  
+ * -- floatVal("1e", "-") 返回值是 1  
+ * -- floatVal("1e-9", "-") 返回值是 1e-9  
+ * -- floatVal(1e-9, "-") 返回值是 1e-9  
+ * -- floatVal("1.2300px", "-") 返回值是 1.23  
+ * -- floatVal("1.2300", "-") 返回值是 1.23  
+ * @since 1.3.4 更新类名 (update function name)
  * @param text
  * @param nanText
  */
-export function floatVal<T>(text: any, nanText: T): T | number {
+export function floatVal<T extends string | number>(text: any, nanText: T): T | number {
   const num = parseFloat(text as string);
   return showNum(num, nanText);
 }
@@ -64,11 +76,21 @@ export function stringifyNumber(num: number): string {
 }
 
 /**
- * @version 1.3.4 更新类名 (update function name)
+ * @description parseInt 的 TypeScript 版本  
+ * -- intVal(null,'-') 返回值是 "-"  
+ * -- intVal(undefined,'-') 返回值是 "-"  
+ * -- intVal(NaN,'-') 返回值是 "-"  
+ * -- intVal(0, "-") 返回值是 0  
+ * -- intVal("0", "-") 返回值是 0  
+ * -- intVal("0px", "-") 返回值是 0  
+ * -- intVal("1e", "-") 返回值是 1  
+ * -- intVal("1e-9", "-") 返回值是 1  
+ * -- intVal(1e-9, "-") 返回值是 0  
+ * @since 1.3.4 更新类名 (update function name)
  * @param text
  * @param nanText
  */
-export function intVal<T>(text: any, nanText: T): T | number {
+export function intVal<T  extends string | number>(text: any, nanText: T): T | number {
   if (typeof text === "number") {
     if (text <= 1e-7) {
       return 0;
@@ -79,7 +101,21 @@ export function intVal<T>(text: any, nanText: T): T | number {
 }
 
 /**
- * @version 1.3.4 更新类名 (update function name)
+ * @description parseFloat 然后根据 saveNum 四舍五入之后的数字
+ * -- floatNum(null, 2, '-') 返回 "-"  
+ * -- floatNum(undefined, 2, '-') 返回 "-"  
+ * -- floatNum(NaN, 2, '-') 返回 "-"  
+ * -- floatNum(0, 2, '-') 返回 0  
+ * -- floatNum("0", 2, '-') 返回 0  
+ * -- floatNum("0px", 2, '-') 返回 0  
+ * -- floatNum("1e-9", 2, '-') 返回 0  
+ * -- floatNum(1e-9, 2, '-') 返回 0  
+ * -- floatNum("1e", 2, '-') 返回 1  
+ * -- floatNum("1.2300px", 2, '-') 返回 1.23  
+ * -- floatNum("1.2300", 2, '-') 返回 1.23  
+ * -- floatNum("1.2340", 2, '-') 返回 1.23  
+ * -- floatNum("1.2350", 2, '-') 返回 1.24  
+ * @since 1.3.4 更新类名 (update function name)
  * @param text
  * @param saveNum
  * @param nanText
@@ -93,12 +129,59 @@ export function floatNum<T>(text: any, saveNum: number, nanText: T): T | number 
 }
 
 /**
- * @version 1.3.4 更新类名 (update function name)
+ * @version 1.3.4 parseFloat 然后根据 saveNum 四舍五入之后的数字 ( 同 fixedVal 函数)
+ * -- fixedVal(null, 2, '-') 返回 "-"  
+ * -- fixedVal(undefined, 2, '-') 返回 "-"  
+ * -- fixedVal(NaN, 2, '-') 返回 "-"  
+ * -- fixedVal(0, 2, '-') 返回 "0.00"  
+ * -- fixedVal("0", 2, '-') 返回 "0.00"  
+ * -- fixedVal("0px", 2, '-') 返回 "0.00"  
+ * -- fixedVal("1e-9", 2, '-') 返回 "0.00"  
+ * -- fixedVal(1e-9, 2, '-') 返回 "0.00"  
+ * -- fixedVal("1e", 2, '-') 返回 "1.00"  
+ * -- fixedVal("1.2300px", 2, '-') 返回 "1.23"  
+ * -- fixedVal("1.2300", 2, '-') 返回 "1.23"  
+ * -- fixedVal("1.2340", 2, '-') 返回 "1.23"  
+ * -- fixedVal("1.2350", 2, '-') 返回 "1.24"  
+ * -- fixedVal(-1.2, 2, "") 返回 "-1.20"  
+ * -- fixedVal(1.204, 2, "") 返回 "1.20"  
+ * -- fixedVal(1.205, 2, "") 返回 "-1.21"  
+ * -- fixedVal(-1.204, 2, "") 返回 "-1.20"  
+ * -- fixedVal(-1.205, 2, "") 返回 "-1.21"  
  * @param text
  * @param saveNum
  * @param nanText
  */
 export function toFixed(text: any, saveNum: number, nanText: string): string {
+  return fixedVal(text, saveNum, nanText);
+}
+
+/**
+ * @description parseFloat 然后根据 saveNum 四舍五入之后的数字
+ * -- fixedVal(null, 2, '-') 返回 "-"  
+ * -- fixedVal(undefined, 2, '-') 返回 "-"  
+ * -- fixedVal(NaN, 2, '-') 返回 "-"  
+ * -- fixedVal(0, 2, '-') 返回 "0.00"  
+ * -- fixedVal("0", 2, '-') 返回 "0.00"  
+ * -- fixedVal("0px", 2, '-') 返回 "0.00"  
+ * -- fixedVal("1e-9", 2, '-') 返回 "0.00"  
+ * -- fixedVal(1e-9, 2, '-') 返回 "0.00"  
+ * -- fixedVal("1e", 2, '-') 返回 "1.00"  
+ * -- fixedVal("1.2300px", 2, '-') 返回 "1.23"  
+ * -- fixedVal("1.2300", 2, '-') 返回 "1.23"  
+ * -- fixedVal("1.2340", 2, '-') 返回 "1.23"  
+ * -- fixedVal("1.2350", 2, '-') 返回 "1.24"  
+ * -- fixedVal(-1.2, 2, "") 返回 "-1.20"  
+ * -- fixedVal(1.204, 2, "") 返回 "1.20"  
+ * -- fixedVal(1.205, 2, "") 返回 "-1.21"  
+ * -- fixedVal(-1.204, 2, "") 返回 "-1.20"  
+ * -- fixedVal(-1.205, 2, "") 返回 "-1.21"  
+ * @param text
+ * @param saveNum
+ * @param nanText
+ * @returns
+ */
+export function fixedVal(text: any, saveNum: number, nanText: string): string {
   const tmpNan = "isNaN";
   let numStr = floatVal(text as string, tmpNan);
   if (numStr === tmpNan) {
@@ -123,17 +206,27 @@ export function toFixed(text: any, saveNum: number, nanText: string): string {
 }
 
 /**
- * @description just rename toFixed
- * @param text
- * @param saveNum
- * @param nanText
- * @returns
+ * @description 依据索引值取对应汉字  
+ * -- [ $zeroStr,
+    "一",
+    "二",
+    "三",
+    "四",
+    "五",
+    "六",
+    "七",
+    "八",
+    "九",
+    "十",
+    "百",
+    "千",
+    "万",
+    "亿"
+  ] 
+ * @param num 
+ * @param zeroStr 
  */
-export function fixedVal(text: any, saveNum: number, nanText: string): string {
-  return toFixed(text, saveNum, nanText);
-}
-
-export function toChineseIndex(num: 0, zeroStr: string): string
+export function toChineseIndex(num: 0, zeroStr?: string): string
 export function toChineseIndex(num: number): string
 export function toChineseIndex(num: number, zeroStr: string = "零"): string {
   const list = [
@@ -156,6 +249,34 @@ export function toChineseIndex(num: number, zeroStr: string = "零"): string {
   return list[num];
 }
 
+/**
+ * @description 判断给定的 $numStr 是否符合数字格式   
+ * -- isNumberLike(103) 返回 true   
+ * -- isNumberLike(-103) 返回 true   
+ * -- isNumberLike(+103) 返回 true   
+ * -- isNumberLike("+103") 返回 true   
+ * -- isNumberLike("-103") 返回 true   
+ * -- isNumberLike(+1e3) 返回 true   
+ * -- isNumberLike(-1e3) 返回 true   
+ * -- isNumberLike("1e3") 返回 false    
+ * -- isNumberLike(0.001) 返回 true  
+ * -- isNumberLike(-0.001) 返回 true  
+ * -- isNumberLike(+0.001) 返回 true  
+ * -- isNumberLike("0.001") 返回 true  
+ * -- isNumberLike("-0.001") 返回 true  
+ * -- isNumberLike("+0.001") 返回 true  
+ * -- isNumberLike("+.001") 返回 true  
+ * -- isNumberLike(".001") 返回 true  
+ * -- isNumberLike(1e-3) 返回 true  
+ * -- isNumberLike("1e-3") 返回 false  
+ * -- isNumberLike("1e") 返回 false  
+ * -- isNumberLike("1px") 返回 false  
+ * -- isNumberLike(null) 返回 false  
+ * -- isNumberLike(undefined) 返回 false  
+ * -- isNumberLike(NaN) 返回 false  
+ * @param numStr 
+ * @returns 
+ */
 export function isNumberLike(numStr: any) {
   if (typeof numStr === "string" || typeof numStr === "number") {
     return /^[+-]?(\d+(\.\d+)?|\.\d+)$/.test(numStr.toString());
@@ -163,6 +284,36 @@ export function isNumberLike(numStr: any) {
   return false;
 }
 
+/**
+ * @description 判断给定的 $numStr 是否符合整数数字格式 
+ * -- isIntLike(103) 返回 true   
+ * -- isIntLike(103.00) 返回 true   
+ * -- isIntLike('103.00') 返回 false   
+ * -- isIntLike(103.01) 返回 false   
+ * -- isIntLike(-103) 返回 true   
+ * -- isIntLike(+103) 返回 true   
+ * -- isIntLike("+103") 返回 true   
+ * -- isIntLike("-103") 返回 true   
+ * -- isIntLike(+1e3) 返回 true   
+ * -- isIntLike(-1e3) 返回 true   
+ * -- isIntLike("1e3") 返回 false   
+ * -- isIntLike(0.001) 返回 false  
+ * -- isIntLike(-0.001) 返回 false  
+ * -- isIntLike(+0.001) 返回 false  
+ * -- isIntLike("0.001") 返回 false  
+ * -- isIntLike("-0.001") 返回 false  
+ * -- isIntLike("+0.001") 返回 false  
+ * -- isIntLike("+.001") 返回 false  
+ * -- isIntLike(".001") 返回 false  
+ * -- isIntLike("1e-3") 返回 false  
+ * -- isIntLike("1e") 返回 false  
+ * -- isIntLike("1px") 返回 false  
+ * -- isIntLike(null) 返回 false  
+ * -- isIntLike(undefined) 返回 false  
+ * -- isIntLike(NaN) 返回 false  
+ * @param numStr 
+ * @returns 
+ */
 export function isIntLike(numStr: any) {
   if (typeof numStr === "string" || typeof numStr === "number") {
     return /^([+-])?(\d+)$/.test(numStr.toString());
@@ -170,6 +321,41 @@ export function isIntLike(numStr: any) {
   return false;
 }
 
+/**
+ * @description 判断给定的 $numStr 是否符合非负整数数字格式 
+ * -- isPositiveInt(0) 返回 true   
+ * -- isPositiveInt(+0) 返回 true   
+ * -- isPositiveInt(-0) 返回 true   
+ * -- isPositiveInt("0") 返回 true   
+ * -- isPositiveInt("+0") 返回 true   
+ * -- isPositiveInt("-0") 返回 false   
+ * -- isPositiveInt(103) 返回 true   
+ * -- isPositiveInt(103.00) 返回 true   
+ * -- isPositiveInt("103.00") 返回 false   
+ * -- isPositiveInt(-103) 返回 false   
+ * -- isPositiveInt(+103) 返回 true   
+ * -- isPositiveInt("+103") 返回 true   
+ * -- isPositiveInt("-103") 返回 false   
+ * -- isPositiveInt(+1e3) 返回 true   
+ * -- isPositiveInt(-1e3) 返回 false   
+ * -- isPositiveInt("1e3") 返回 false   
+ * -- isPositiveInt(0.001) 返回 false  
+ * -- isPositiveInt(-0.001) 返回 false  
+ * -- isPositiveInt(+0.001) 返回 false  
+ * -- isPositiveInt("0.001") 返回 false  
+ * -- isPositiveInt("-0.001") 返回 false  
+ * -- isPositiveInt("+0.001") 返回 false  
+ * -- isPositiveInt("+.001") 返回 false  
+ * -- isPositiveInt(".001") 返回 false  
+ * -- isPositiveInt("1e-3") 返回 false  
+ * -- isPositiveInt("1e") 返回 false  
+ * -- isPositiveInt("1px") 返回 false  
+ * -- isPositiveInt(null) 返回 false  
+ * -- isPositiveInt(undefined) 返回 false  
+ * -- isPositiveInt(NaN) 返回 false  
+ * @param numStr 
+ * @returns 
+ */
 export function isPositiveInt(numStr: any) {
   if (typeof numStr === "string" || typeof numStr === "number") {
     return /^\+?\d+$/.test(numStr.toString());
@@ -271,22 +457,30 @@ export function isSimilarEqual(
 }
 
 /**
+ * @description 排除 NaN/null/undefined 之后，调用 Math.min  
+ * -- getMinIn("-10px", "2%", NaN, null, undefined, 1, -5) 返回 -10  
  * @since 1.4.2
  */
 export function getMinIn(...args: Array<string | number | null | undefined>): number {
-  const numList = args.filter((item) => {
-    return !isNaN(item as number);
-  }) as Array<number>;
+  const numList = args.map((item) => {
+    return floatVal(item, NaN);
+  }).filter((one) => {
+    return !isNaN(one);
+  });
   return Math.min(...numList);
 }
 
 /**
+ * @description 排除 NaN/null/undefined 之后，调用 Math.max
+ * -- getMinIn("-10px", "2%", NaN, null, undefined, 1, -5) 返回 2    
  * @since 1.4.9
  */
 export function getMaxIn(...args: Array<string | number | null | undefined>): number {
-  const numList = args.filter((item) => {
-    return !isNaN(item as number);
-  }) as Array<number>;
+  const numList = args.map((item) => {
+    return floatVal(item, NaN);
+  }).filter((one) => {
+    return !isNaN(one);
+  });
   return Math.max(...numList);
 }
 

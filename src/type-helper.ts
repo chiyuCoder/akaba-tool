@@ -73,7 +73,7 @@ export function ensureNonNull<T>(obj: T | null | undefined): NonNullable<T> {
  * @returns 
  */
 export function getStringKeyListFrom<T extends object>(obj: T): Array<StringKeyOf<T>> {
-  return Reflect.ownKeys(obj).filter((keyName) => typeof keyName === "string") as Array<any>;
+  return Reflect.ownKeys(obj).filter((keyName): keyName is StringKeyOf<T> => typeof keyName === "string");
 }
 
 /**

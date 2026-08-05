@@ -1,3 +1,7 @@
+
+/**
+ * @deprecated
+ */
 export class OptionNullSetter<T> {
   public readonly bindObj: T | null | undefined;
   public whenNull?: any;

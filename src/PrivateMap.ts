@@ -53,7 +53,9 @@ class SinglePrivateMap<TBindObj extends object, TObjectPropertyDict extends obje
     return dict[keyName];
   }
 }
-
+/**
+ * @description 为了替代类的私有访问属性、方法。如果可以使命类的私有属性关键字，则非常不建议使用这个类
+ */
 export class PrivateMap<TBindObj extends  object = object, TObjectPropertyDict extends object = object> {
   private bindMap: WeakMap<TBindObj, TObjectPropertyDict> = new WeakMap<TBindObj, TObjectPropertyDict>();
 

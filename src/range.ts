@@ -1,4 +1,5 @@
 import {doLoop} from "./arrayLike";
+import { callFunc } from "./func-helper";
 import {floatVal} from "./num";
 import {optionCopier} from "./OptionCopier";
 
@@ -35,7 +36,7 @@ export function getRangeOfDataList<T>(list: ArrayLike<T>, valHandle?: NSFuncRang
     let valHandleFunc: NSFuncRange.TValHandle<T>;
     if (typeof valHandle !== "function") {
         valHandleFunc = function (item) {
-            return floatVal(item as any as number, 0) as number;
+            return floatVal(item, NaN);
         };
     } else {
         valHandleFunc = valHandle;
@@ -82,14 +83,14 @@ export function getSplitInfoOf(splitInfo: NSFuncRange.IBaseSplitInfo, option: Pa
 }
 
 export function getSplitInfoIntStep(splitInfo:  NSFuncRange.IBaseSplitInfo, option: Partial<NSFuncRange.IExtraSplitInfo> = {}): NSFuncRange.IBaseSplitInfoStep {
-    let copySplitInfo = optionCopier.copyOptionAsObj(splitInfo as any);
+    let copySplitInfo = optionCopier.copyOptionAsObj(splitInfo);
     copySplitInfo.min = Math.floor(splitInfo.min);
     copySplitInfo.max = Math.ceil(splitInfo.max);
     return getSplitInfoOf(copySplitInfo, optionCopier.mixedOpt({
         stepHandle(step: number) {
             return Math.ceil(step);
         },
-    } as any, option));
+    }, option));
 }
 
 export function getSplitInfoTimesStep(splitInfo:  NSFuncRange.IBaseSplitInfo, option: Partial<NSFuncRange.IBaseSplitInfoStepTimes> = {}): NSFuncRange.IBaseSplitInfoStep {
@@ -108,21 +109,46 @@ export function getSplitInfoTimesStep(splitInfo:  NSFuncRange.IBaseSplitInfo, op
 }
 
 /**
+ * @description 根据给定的参数 `from` 和 `to` 生成数组  
+ * -- 如 buildRangeList(10) / buildRangeList(10, 0) / buildRangeList(10, 0, 1) / buildRangeList(10, {to: 0, step: 1}) 则生成 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]  
+ * -- 如 buildRangeList(10, {step: 2}) 和 buildRangeList(10, 0, 2)/buildRangeList(0, 10, 2) 则生成 [0, 2, 4, 6, 8]  
+ * -- 如 buildRangeList(-10, {step: -2}) 和 buildRangeList(-10, 0, -2)/buildRangeList(0, -10, -2) 则生成 [-10, -8, -6, -4, -2]  
  * @since 1.4.12
  * @param from 
- * @param to 
+ * @param to -- default is 0(number)
  * @param step 
  * @returns 
  */
-export function buildRangeList(from: number, to: number = 0, step: number = 1): Array<number> {
+export function buildRangeList(
+    from: number,
+    to: number | Partial<{to: number, step: number}> = 0, 
+    step: number = 1
+): Array<number> {
     const resultList: Array<number> = [];
+    const defaultTo = 0;
+    const defaultStep = 1;
+    let numTo = callFunc(() => {
+        if (typeof to === "object") {
+            return to.to ?? defaultTo;
+        }
+        return to ?? defaultTo;
+    });
+    const numStep = callFunc(() => {
+        if (typeof to === "object") {
+            if (typeof to.step === "number") {
+                return to.step;
+            }
+        }
+        return step ?? defaultStep;
+    });
     if (
-        (step > 0 && from > to) ||
-        (step < 0 && to < from)
+        (numStep > 0 && from > numTo) ||
+        (numStep < 0 && numTo < from)
     ) {
-        [from, to] = [to, from];
+        [from, numTo] = [numTo, from];
     }
-    for (let i = from; i < to; i += step) {
+    const stepVal = Math.abs(numStep);
+    for (let i = from; i < numTo; i += stepVal) {
         resultList.push(i);
     }
     return resultList;

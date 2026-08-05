@@ -6,6 +6,7 @@ export {
   getTag,
   stringify,
   rejoinString,
+  splitStringExceptEmpty,
 } from "./str-relate/get-words";
 
 /**
