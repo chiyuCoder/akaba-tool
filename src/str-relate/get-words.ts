@@ -104,6 +104,7 @@ export function upperFirstLetter(str: string): string {
 }
 
 /**
+ * 
  * @since 1.3.2
  */
 export function rejoinString(str: string, joinMark: string, splitMark?: string | RegExp) {
@@ -113,13 +114,19 @@ export function rejoinString(str: string, joinMark: string, splitMark?: string |
 
 /**
  * @description 分隔字符串  
- * -- splitStringExceptEmpty(",str1,,str2,") 返回 ["str1", "str2"]  
- * -- splitStringExceptEmpty(null) 返回 []  
- * -- splitStringExceptEmpty(undefined) 返回 []  
- * -- splitStringExceptEmpty("") 返回 []  
- * -- splitStringExceptEmpty(NaN) 返回 []  
- * -- splitStringExceptEmpty(0) 返回 ["0"]  
- * -- splitStringExceptEmpty(0.25, ".") 返回 ["0", "25"]  
+ * ```TypeScript
+ * splitStringExceptEmpty(",str1,,str2,") // 返回 ["str1", "str2"]  
+ * splitStringExceptEmpty(null) // 返回 []  
+ * splitStringExceptEmpty(undefined) // 返回 []  
+ * splitStringExceptEmpty("") // 返回 []  
+ * splitStringExceptEmpty(NaN) // 返回 []  
+ * splitStringExceptEmpty(0) // 返回 ["0"]  
+ * splitStringExceptEmpty(1e-1) // 返回 ["0.1"]  
+ * splitStringExceptEmpty("1e-1") // 返回 ["1e-1"]  
+ * splitStringExceptEmpty(Infinity) // 返回 []  
+ * splitStringExceptEmpty("Infinity") // 返回 ["Infinity"]  
+ * splitStringExceptEmpty(0.25, ".") // 返回 ["0", "25"]  
+ * ```
  * @since 1.4.20
  * @param strLike 
  * @param splitMark default is ","
@@ -129,7 +136,7 @@ export function splitStringExceptEmpty(
   strLike: string | number | null | undefined, 
   splitMark: string | RegExp = ","
 ): Array<string> {
-  if (strLike === null || strLike === undefined || (typeof strLike === "number" && isNaN(strLike))) {
+  if (strLike === null || strLike === undefined || (typeof strLike === "number" && (isNaN(strLike) || !isFinite(strLike)))) {
     return [];
   }
   const strVal = (strLike ?? "").toString();
