@@ -1,3 +1,6 @@
+export {
+  type NSStringFunc,
+} from "./declaration/ns-str";
 export * from "./type-helper";
 export * from "./delay-helper";
 export * as delayHelper from "./delay-helper";

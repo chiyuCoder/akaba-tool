@@ -1,5 +1,5 @@
 
-class SinglePrivateMap<TBindObj extends object, TObjectPropertyDict extends object> {
+export class SinglePrivateMap<TBindObj extends object, TObjectPropertyDict extends object> {
   private readonly bindObj: TBindObj;
   private readonly privateMap: PrivateMap<TBindObj, TObjectPropertyDict>;
 
