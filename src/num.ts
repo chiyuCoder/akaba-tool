@@ -32,6 +32,8 @@ function showNum<T extends string | number>(text: any, nanText: T): T | number {
 /**
   * parseFloat 的 TypeScript 版本  
   * ```TypeScript
+  * floatVal(Infinity,'-') === Infinity  // 返回 true
+  * floatVal("Infinity",'-') === "-"  // 返回 true
   * floatVal(null,'-') === "-"  // 返回 true
   * floatVal(undefined,'-') === "-"  // 返回 true
   * floatVal(NaN,'-') === "-"  // 返回 true
@@ -49,6 +51,9 @@ function showNum<T extends string | number>(text: any, nanText: T): T | number {
  * @param nanText
  */
 export function floatVal<T extends string | number>(text: any, nanText: T): T | number {
+  if (text === "Infinity") {
+    return nanText;
+  }
   const num = parseFloat(text as string);
   return showNum(num, nanText);
 }
@@ -80,6 +85,8 @@ export function stringifyNumber(num: number): string {
 /** 
  * parseInt 的 TypeScript 版本  
  * ```TypeScript
+ * intVal(Infinity, "-") === "-" // 返回true
+ * intVal("Infinity", "-") === "-" // 返回true
  * intVal(null,'-') === "-"  // 返回 true
  * intVal(undefined,'-') === "-"  // 返回 true
  * intVal(NaN,'-') === "-"  // 返回 true
@@ -95,6 +102,9 @@ export function stringifyNumber(num: number): string {
  * @param nanText
  */
 export function intVal<T  extends string | number>(text: any, nanText: T): T | number {
+  if (text === "Infinity") {
+    return nanText;
+  }
   if (typeof text === "number") {
     if (text <= 1e-7) {
       return 0;
@@ -107,6 +117,8 @@ export function intVal<T  extends string | number>(text: any, nanText: T): T | n
 /**
  * parseFloat 然后根据 saveNum 四舍五入之后的数字
  * ```TypeScript
+ * floatNum(Infinity, 2, "-") === Infinity // 返回 true
+ * floatNum("Infinity", 2, "-") === "-" // 返回 true
  * floatNum(null, 2, '-') === "-"  // 返回 true
  * floatNum(undefined, 2, '-') === "-"  // 返回 true
  * floatNum(NaN, 2, '-') === "-"  // 返回 true
@@ -126,6 +138,9 @@ export function intVal<T  extends string | number>(text: any, nanText: T): T | n
  * @param nanText
  */
 export function floatNum<T>(text: any, saveNum: number, nanText: T): T | number {
+  if (text === "Infinity") {
+    return nanText;
+  }
   let num = parseFloat(text as string);
   if (isNaN(num)) {
     return nanText;
@@ -135,7 +150,10 @@ export function floatNum<T>(text: any, saveNum: number, nanText: T): T | number 
 
 /**
  *  parseFloat 然后根据 saveNum 四舍五入之后的数字 (fixedVal 函数的别名)
+ * 
  * ``` TypeScript
+ *  fixedVal(Infinity, 2,"-") === "-" //  返回 true
+ *  fixedVal("Infinity", 2,"-") === "-" //  返回 true
  *  fixedVal(null, 2, '-') === "-"  // 返回 true
  *  fixedVal(undefined, 2, '-') === "-"  // 返回 true
  *  fixedVal(NaN, 2, '-') === "-"  // 返回 true
@@ -167,6 +185,8 @@ export function toFixed(text: any, saveNum: number, nanText: string): string {
 /**
  *  parseFloat 然后根据 saveNum 四舍五入之后的数字
  * ``` TypeScript
+ *  fixedVal(Infinity, 2,"-") === "-" //  返回 true
+ *  fixedVal("Infinity", 2,"-") === "-" //  返回 true
  *  fixedVal(null, 2, '-') === "-"  // 返回 true
  *  fixedVal(undefined, 2, '-') === "-"  // 返回 true
  *  fixedVal(NaN, 2, '-') === "-"  // 返回 true
@@ -192,9 +212,15 @@ export function toFixed(text: any, saveNum: number, nanText: string): string {
  * @returns
  */
 export function fixedVal(text: any, saveNum: number, nanText: string): string {
+  if (text === "Infinity") {
+    return nanText;
+  }
   const tmpNan = "isNaN";
-  let numStr = floatVal(text as string, tmpNan);
+  let numStr = floatVal(text, tmpNan);
   if (numStr === tmpNan) {
+    return nanText;
+  }
+  if (!isFinite(numStr)) {
     return nanText;
   }
   let fixedNum = (numStr as number).toFixed(saveNum);
@@ -225,7 +251,7 @@ export function fixedVal(text: any, saveNum: number, nanText: string): string {
  */
 export function toChineseIndex(num: 0, zeroStr?: string): string
 export function toChineseIndex(num: number): string
-export function toChineseIndex(num: number, zeroStr: string = "零"): string {
+export function toChineseIndex(num: number, zeroStr: string = "零"): string | undefined {
   const list = [
     zeroStr,
     "一",
@@ -247,30 +273,37 @@ export function toChineseIndex(num: number, zeroStr: string = "零"): string {
 }
 
 /**
- * @description 判断给定的 $numStr 是否符合数字格式   
- * -- isNumberLike(103) 返回 true   
- * -- isNumberLike(-103) 返回 true   
- * -- isNumberLike(+103) 返回 true   
- * -- isNumberLike("+103") 返回 true   
- * -- isNumberLike("-103") 返回 true   
- * -- isNumberLike(+1e3) 返回 true   
- * -- isNumberLike(-1e3) 返回 true   
- * -- isNumberLike("1e3") 返回 false    
- * -- isNumberLike(0.001) 返回 true  
- * -- isNumberLike(-0.001) 返回 true  
- * -- isNumberLike(+0.001) 返回 true  
- * -- isNumberLike("0.001") 返回 true  
- * -- isNumberLike("-0.001") 返回 true  
- * -- isNumberLike("+0.001") 返回 true  
- * -- isNumberLike("+.001") 返回 true  
- * -- isNumberLike(".001") 返回 true  
- * -- isNumberLike(1e-3) 返回 true  
- * -- isNumberLike("1e-3") 返回 false  
- * -- isNumberLike("1e") 返回 false  
- * -- isNumberLike("1px") 返回 false  
- * -- isNumberLike(null) 返回 false  
- * -- isNumberLike(undefined) 返回 false  
- * -- isNumberLike(NaN) 返回 false  
+ * @description 判断给定的 $numStr 是否符合数字格式 
+ * ```TypeScript  
+ * isNumberLike(null) // 返回 false  
+ * isNumberLike("null") // 返回 false  
+ * isNumberLike(undefined) // 返回 false  
+ * isNumberLike("undefined") // 返回 false  
+ * isNumberLike(NaN) // 返回 false 
+ * isNumberLike("NaN") // 返回 false 
+ * isNumberLike(Infinity) // 返回 false 
+ * isNumberLike("Infinity") // 返回 false 
+ * isNumberLike(103) // 返回 true   
+ * isNumberLike(-103) // 返回 true   
+ * isNumberLike(+103) // 返回 true   
+ * isNumberLike("+103") // 返回 true   
+ * isNumberLike("-103") // 返回 true   
+ * isNumberLike(+1e3) // 返回 true   
+ * isNumberLike(-1e3) // 返回 true   
+ * isNumberLike("1e3") // 返回 false    
+ * isNumberLike(0.001) // 返回 true  
+ * isNumberLike(-0.001) // 返回 true  
+ * isNumberLike(+0.001) // 返回 true  
+ * isNumberLike("0.001") // 返回 true  
+ * isNumberLike("-0.001") // 返回 true  
+ * isNumberLike("+0.001") // 返回 true  
+ * isNumberLike("+.001") // 返回 true  
+ * isNumberLike(".001") // 返回 true  
+ * isNumberLike(1e-3) // 返回 true  
+ * isNumberLike("1e-3") // 返回 false  
+ * isNumberLike("1e") // 返回 false  
+ * isNumberLike("1px") // 返回 false  
+ * ``` 
  * @param numStr 
  * @returns 
  */
@@ -282,32 +315,39 @@ export function isNumberLike(numStr: any) {
 }
 
 /**
- * @description 判断给定的 $numStr 是否符合整数数字格式 
- * -- isIntLike(103) 返回 true   
- * -- isIntLike(103.00) 返回 true   
- * -- isIntLike('103.00') 返回 false   
- * -- isIntLike(103.01) 返回 false   
- * -- isIntLike(-103) 返回 true   
- * -- isIntLike(+103) 返回 true   
- * -- isIntLike("+103") 返回 true   
- * -- isIntLike("-103") 返回 true   
- * -- isIntLike(+1e3) 返回 true   
- * -- isIntLike(-1e3) 返回 true   
- * -- isIntLike("1e3") 返回 false   
- * -- isIntLike(0.001) 返回 false  
- * -- isIntLike(-0.001) 返回 false  
- * -- isIntLike(+0.001) 返回 false  
- * -- isIntLike("0.001") 返回 false  
- * -- isIntLike("-0.001") 返回 false  
- * -- isIntLike("+0.001") 返回 false  
- * -- isIntLike("+.001") 返回 false  
- * -- isIntLike(".001") 返回 false  
- * -- isIntLike("1e-3") 返回 false  
- * -- isIntLike("1e") 返回 false  
- * -- isIntLike("1px") 返回 false  
- * -- isIntLike(null) 返回 false  
- * -- isIntLike(undefined) 返回 false  
- * -- isIntLike(NaN) 返回 false  
+ * @description 判断给定的 $numStr 是否符合整数数字格式   
+ * ```TypeScript
+ * isIntLike(null) // 返回 false  
+ * isIntLike("null") // 返回 false  
+ * isIntLike(undefined) // 返回 false  
+ * isIntLike("undefined") // 返回 false  
+ * isIntLike(NaN) // 返回 false  
+ * isIntLike("NaN") // 返回 false  
+ * isIntLike(Infinity) // 返回 false  
+ * isIntLike("Infinity") // 返回 false  
+ * isIntLike(103) // 返回 true   
+ * isIntLike(103.00) // 返回 true   
+ * isIntLike('103.00') // 返回 false   
+ * isIntLike(103.01) // 返回 false   
+ * isIntLike(-103) // 返回 true   
+ * isIntLike(+103) // 返回 true   
+ * isIntLike("+103") // 返回 true   
+ * isIntLike("-103") // 返回 true   
+ * isIntLike(+1e3) // 返回 true   
+ * isIntLike(-1e3) // 返回 true   
+ * isIntLike("1e3") // 返回 false   
+ * isIntLike(0.001) // 返回 false  
+ * isIntLike(-0.001) // 返回 false  
+ * isIntLike(+0.001) // 返回 false  
+ * isIntLike("0.001") // 返回 false  
+ * isIntLike("-0.001") // 返回 false  
+ * isIntLike("+0.001") // 返回 false  
+ * isIntLike("+.001") // 返回 false  
+ * isIntLike(".001") // 返回 false  
+ * isIntLike("1e-3") // 返回 false  
+ * isIntLike("1e") // 返回 false  
+ * isIntLike("1px") // 返回 false
+ * ```
  * @param numStr 
  * @returns 
  */
@@ -320,36 +360,43 @@ export function isIntLike(numStr: any) {
 
 /**
  * @description 判断给定的 $numStr 是否符合非负整数数字格式 
- * -- isPositiveInt(0) 返回 true   
- * -- isPositiveInt(+0) 返回 true   
- * -- isPositiveInt(-0) 返回 true   
- * -- isPositiveInt("0") 返回 true   
- * -- isPositiveInt("+0") 返回 true   
- * -- isPositiveInt("-0") 返回 false   
- * -- isPositiveInt(103) 返回 true   
- * -- isPositiveInt(103.00) 返回 true   
- * -- isPositiveInt("103.00") 返回 false   
- * -- isPositiveInt(-103) 返回 false   
- * -- isPositiveInt(+103) 返回 true   
- * -- isPositiveInt("+103") 返回 true   
- * -- isPositiveInt("-103") 返回 false   
- * -- isPositiveInt(+1e3) 返回 true   
- * -- isPositiveInt(-1e3) 返回 false   
- * -- isPositiveInt("1e3") 返回 false   
- * -- isPositiveInt(0.001) 返回 false  
- * -- isPositiveInt(-0.001) 返回 false  
- * -- isPositiveInt(+0.001) 返回 false  
- * -- isPositiveInt("0.001") 返回 false  
- * -- isPositiveInt("-0.001") 返回 false  
- * -- isPositiveInt("+0.001") 返回 false  
- * -- isPositiveInt("+.001") 返回 false  
- * -- isPositiveInt(".001") 返回 false  
- * -- isPositiveInt("1e-3") 返回 false  
- * -- isPositiveInt("1e") 返回 false  
- * -- isPositiveInt("1px") 返回 false  
- * -- isPositiveInt(null) 返回 false  
- * -- isPositiveInt(undefined) 返回 false  
- * -- isPositiveInt(NaN) 返回 false  
+ * ```TypeScript
+ * isPositiveInt(null) // 返回 false  
+ * isPositiveInt("null") // 返回 false  
+ * isPositiveInt(undefined) // 返回 false  
+ * isPositiveInt("undefined") // 返回 false  
+ * isPositiveInt(NaN) // 返回 false 
+ * isPositiveInt("NaN") // 返回 false 
+ * isPositiveInt(Infinity) // 返回 false 
+ * isPositiveInt("Infinity") // 返回 false 
+ * isPositiveInt(0) // 返回 true   
+ * isPositiveInt(+0) // 返回 true   
+ * isPositiveInt(-0) // 返回 true   
+ * isPositiveInt("0") // 返回 true   
+ * isPositiveInt("+0") // 返回 true   
+ * isPositiveInt("-0") // 返回 false   
+ * isPositiveInt(103) // 返回 true   
+ * isPositiveInt(103.00) // 返回 true   
+ * isPositiveInt("103.00") // 返回 false   
+ * isPositiveInt(-103) // 返回 false   
+ * isPositiveInt(+103) // 返回 true   
+ * isPositiveInt("+103") // 返回 true   
+ * isPositiveInt("-103") // 返回 false   
+ * isPositiveInt(+1e3) // 返回 true   
+ * isPositiveInt(-1e3) // 返回 false   
+ * isPositiveInt("1e3") // 返回 false   
+ * isPositiveInt(0.001) // 返回 false  
+ * isPositiveInt(-0.001) // 返回 false  
+ * isPositiveInt(+0.001) // 返回 false  
+ * isPositiveInt("0.001") // 返回 false  
+ * isPositiveInt("-0.001") // 返回 false  
+ * isPositiveInt("+0.001") // 返回 false  
+ * isPositiveInt("+.001") // 返回 false  
+ * isPositiveInt(".001") // 返回 false  
+ * isPositiveInt("1e-3") // 返回 false  
+ * isPositiveInt("1e") // 返回 false  
+ * isPositiveInt("1px") // 返回 false   
+ * ```
  * @param numStr 
  * @returns 
  */
@@ -360,6 +407,50 @@ export function isPositiveInt(numStr: any) {
   return false;
 }
 
+/**
+ * @description 判断给定的 numLikeStr 是否符合非负数的格式
+ * ```TypeScript
+ * expect(isPositiveNumber(null)).toBe(false);
+ * expect(isPositiveNumber("null")).toBe(false);
+ * expect(isPositiveNumber(undefined)).toBe(false);
+ * expect(isPositiveNumber("undefined")).toBe(false);
+ * expect(isPositiveNumber(NaN)).toBe(false);
+ * expect(isPositiveNumber("NaN")).toBe(false);
+ * expect(isPositiveNumber(Infinity)).toBe(false);
+ * expect(isPositiveNumber("Infinity")).toBe(false);
+ * 
+ * expect(isPositiveNumber(0)).toBe(true);
+ * expect(isPositiveNumber("0")).toBe(true);
+ * expect(isPositiveNumber(+0)).toBe(true);
+ * expect(isPositiveNumber("+0")).toBe(true);
+ * expect(isPositiveNumber(-0)).toBe(true);
+ * expect(isPositiveNumber("-0")).toBe(false);
+ * 
+ * expect(isPositiveNumber(0.001)).toBe(true);
+ * expect(isPositiveNumber("0.001")).toBe(true);
+ * expect(isPositiveNumber(-0.001)).toBe(false);
+ * expect(isPositiveNumber("-0.001")).toBe(false);
+ * expect(isPositiveNumber("+0.001")).toBe(true);
+ * expect(isPositiveNumber(".001")).toBe(false);
+ * expect(isPositiveNumber(+.001)).toBe(true);
+ * expect(isPositiveNumber("+.001")).toBe(false);
+ * 
+ * expect(isPositiveNumber(1e3)).toBe(true);
+ * expect(isPositiveNumber("1e3")).toBe(false);
+ * expect(isPositiveNumber(+1e3)).toBe(true);
+ * expect(isPositiveNumber(-1e3)).toBe(false);
+ * 
+ * expect(isPositiveNumber(1e-3)).toBe(true);
+ * expect(isPositiveNumber("1e-3")).toBe(false);
+ * 
+ * expect(isPositiveNumber("1e")).toBe(false);
+ * 
+ * expect(isPositiveNumber("1px")).toBe(false);
+ * 
+ * ```
+ * @param numLikeStr 
+ * @returns 
+ */
 export function isPositiveNumber(numLikeStr: any): boolean {
   if (typeof numLikeStr === "string" || typeof numLikeStr === "number") {
     return /^\+?\d+(\.\d+)?$/.test(numLikeStr.toString());
@@ -399,12 +490,61 @@ export function isMatchFloat(num: number | string, maxLen: number = 10, fraction
   };
 }
 
+/**
+ * 
+ * @param num 
+ * @param maxIntPartLen 
+ * @param maxFractionLen 
+ * @returns 
+ */
 export function isConstraintNum(num: any, maxIntPartLen: number = 18, maxFractionLen: number = 2) {
   const str = `^(\\d{1,${maxIntPartLen}})(?:\\.\\d{1,${maxFractionLen}})?$`;
   const reg = new RegExp(str);
   return reg.test(num.toString());
 }
 
+/**
+ * 给定的num, 如果在范围[min,max]中，则返回num; 如果小于min,则返回min;大于max,返回max
+ * 
+ * 如果没有给定max/min，则max对应无穷大，min对应负无穷大
+ * 
+ * ```TypeScript
+ * expect(getNumInRange(6, 5, 7)).toBe(6);
+ * 
+ * // 下面三种写法是等价的
+ * expect(getNumInRange(1, 10, NaN)).toBe(10);
+ * expect(getNumInRange(1, 10)).toBe(10);
+ * expect(getNumInRange({num: 1, min: 10, max: NaN})).toBe(10);
+ * // ---
+ * // 下面二种写法是等价的
+ * expect(getNumInRange(1, NaN, 10)).toBe(1);
+ * expect(getNumInRange({num: 1, max: 10})).toBe(1);
+ * // ---
+ * 
+ * // min对应NaN，等价于负无穷大
+ * expect(getNumInRange(-Number.MAX_VALUE, NaN, 10)).toBe(-Number.MAX_VALUE);
+ * 
+ * // max对应NaN，等价于无穷大
+ * expect(getNumInRange(Number.MAX_VALUE, 10, NaN)).toBe(Number.MAX_VALUE);
+ * 
+ * // min 在 [min,max]这个范围中
+ * expect(getNumInRange(5, 5, 7)).toBe(5);
+ * 
+ * // max 在 [min,max]这个范围中
+ * expect(getNumInRange(7, 5, 7)).toBe(7);
+ * 
+ * // num不在[min,max]中,且小于min,返回min
+ * expect(getNumInRange(1, 5, 7)).toBe(5);
+ * 
+ * // num不在[min,max]中,且大于max,返回max
+ * expect(getNumInRange(10, 5, 7)).toBe(7);
+ * 
+ * // 虽然下面也是可以的。但非常不建议这个写 
+ * expect(getNumInRange(6, 7, 5)).toBe(7); // (因为6<7,所以返回7)
+ * expect(getNumInRange(8, 7, 5)).toBe(5); // (因为8 > 5,所以返回5)
+ * ``` 
+ * @param obj 
+ */
 export function getNumInRange(obj: { num: number, min: number, max?: number }): number
 export function getNumInRange(obj: { num: number, min?: number, max: number }): number
 export function getNumInRange(obj: number, min: number, max?: number): number
@@ -444,7 +584,7 @@ export function isSimilarEqual(
   epsilon: number = Number.EPSILON,
 ): boolean {
   const a = floatVal(strOrNumA, "-");
-  const b = floatVal(strOrNumA, "-");
+  const b = floatVal(strOrNumB, "-");
   if (a === "-" || b === "-") {
     // eslint-disable-next-line eqeqeq
     return strOrNumA == strOrNumB;
@@ -454,8 +594,10 @@ export function isSimilarEqual(
 }
 
 /**
- * @description 排除 NaN/null/undefined 之后，调用 Math.min  
- * -- getMinIn("-10px", "2%", NaN, null, undefined, 1, -5) 返回 -10  
+ * @description 排除 NaN/null/undefined 之后，调用 Math.min 
+ * ```TypeScript 
+ * getMinIn("-10px", "2%", NaN, null, undefined, 1, -5) // 返回 -10 
+ * ``` 
  * @since 1.4.2
  */
 export function getMinIn(...args: Array<string | number | null | undefined>): number {
@@ -469,7 +611,10 @@ export function getMinIn(...args: Array<string | number | null | undefined>): nu
 
 /**
  * @description 排除 NaN/null/undefined 之后，调用 Math.max
- * -- getMinIn("-10px", "2%", NaN, null, undefined, 1, -5) 返回 2    
+ * ```TypeScript
+ * getMinIn("-10px", "2%", NaN, null, undefined, 1, -5) // 返回 2  
+ * getMinIn("-10px", "2%", NaN, null, undefined, 1, -5, Infinity) // 返回 Infinity  
+ * ```  
  * @since 1.4.9
  */
 export function getMaxIn(...args: Array<string | number | null | undefined>): number {
@@ -483,6 +628,18 @@ export function getMaxIn(...args: Array<string | number | null | undefined>): nu
 
 /**
  * @description 当且仅当sth为 [string|number] 类型时，会转成 number；其他类型直接输出为NaN
+ * ```TypeScript
+ * expect(toNumber(null)).toBe(NaN);
+ * expect(toNumber("null")).toBe(NaN);
+ * expect(toNumber(undefined)).toBe(NaN);
+ * expect(toNumber("undefined")).toBe(NaN);
+ * expect(toNumber(NaN)).toBe(NaN);
+ * expect(toNumber("NaN")).toBe(NaN);
+ * expect(toNumber(Infinity)).toBe(Infinity);
+ * expect(toNumber("Infinity")).toBe(Infinity);
+ * expect(toNumber(1e2)).toBe(100);
+ * expect(toNumber("1e2")).toBe(100);
+ * ```
  * @since 1.4.8
  * @param sth 
  * @returns 
