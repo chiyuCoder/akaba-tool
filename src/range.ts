@@ -110,7 +110,7 @@ export function getSplitInfoTimesStep(splitInfo:  NSFuncRange.IBaseSplitInfo, op
 
 /**
  * @description 根据给定的参数 `from` 和 `to` 生成数组
- * ``` TypeScript 
+ * ```TypeScript 
  * buildRangeList(10)
  * // 等价于
  * buildRangeList(10, 0) 
