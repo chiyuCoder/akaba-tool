@@ -135,7 +135,8 @@ export function getSplitInfoTimesStep(splitInfo:  NSFuncRange.IBaseSplitInfo, op
  * // 等价于
  * buildRangeList(0, -10, -2) 
  * // 返回
- * [-10, -8, -6, -4, -2]  
+ * [-10, -8, -6, -4, -2] 
+ * ``` 
  * @since 1.4.12
  * @param from 
  * @param to -- default is 0(number)
