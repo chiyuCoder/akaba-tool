@@ -109,10 +109,33 @@ export function getSplitInfoTimesStep(splitInfo:  NSFuncRange.IBaseSplitInfo, op
 }
 
 /**
- * @description 根据给定的参数 `from` 和 `to` 生成数组  
- * -- 如 buildRangeList(10) / buildRangeList(10, 0) / buildRangeList(10, 0, 1) / buildRangeList(10, {to: 0, step: 1}) 则生成 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]  
- * -- 如 buildRangeList(10, {step: 2}) 和 buildRangeList(10, 0, 2)/buildRangeList(0, 10, 2) 则生成 [0, 2, 4, 6, 8]  
- * -- 如 buildRangeList(-10, {step: -2}) 和 buildRangeList(-10, 0, -2)/buildRangeList(0, -10, -2) 则生成 [-10, -8, -6, -4, -2]  
+ * @description 根据给定的参数 `from` 和 `to` 生成数组
+ * ```  
+ * buildRangeList(10)
+ * // 等价于
+ * buildRangeList(10, 0) 
+ * // 等价于
+ * buildRangeList(10, 0, 1)
+ * // 等价于
+ *  buildRangeList(10, {to: 0, step: 1}) 
+ * // 返回
+ * [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]  
+ * // --
+ * buildRangeList(10, {step: 2}) 
+ * // 等价于
+ * buildRangeList(10, 0, 2)
+ * // 等价于
+ * buildRangeList(0, 10, 2) 
+ * // 返回
+ * [0, 2, 4, 6, 8]  
+ * // -- 
+ * buildRangeList(-10, {step: -2}) 
+ * // 等价于
+ * buildRangeList(-10, 0, -2)
+ * // 等价于
+ * buildRangeList(0, -10, -2) 
+ * // 返回
+ * [-10, -8, -6, -4, -2]  
  * @since 1.4.12
  * @param from 
  * @param to -- default is 0(number)
